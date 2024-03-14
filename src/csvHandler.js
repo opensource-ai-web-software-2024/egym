@@ -1,17 +1,12 @@
+// CSV 생성 JS
+
+// CSV 생성
 function writeCsv(hrefs = ["/exercises/abs.html"]) {
   const csvFilePath = "exercise.csv";
   getMuscleParts();
   // CSV 데이터 준비
   const data = [];
-  data.push([
-    "운동명",
-    "운동 정보",
-    "운동 소개",
-    "운동 절차",
-    "운동 팁",
-    "썸네일 링크",
-    "유튜브 링크",
-  ]);
+  data.push(["운동명", "운동 정보", "운동 소개", "운동 절차", "운동 팁", "썸네일 링크", "유튜브 링크"]);
 
   console.log(hrefs);
   hrefs.forEach((href) => {
@@ -28,7 +23,7 @@ function writeCsv(hrefs = ["/exercises/abs.html"]) {
   const csv = Papa.unparse(data);
 
   // CSV 파일 다운로드
-  const blob = new Blob([new Uint8Array([0xEF, 0xBB, 0xBF]), csv], { type: "text/csv;charset=utf-8;" });
+  const blob = new Blob([new Uint8Array([0xef, 0xbb, 0xbf]), csv], { type: "text/csv;charset=utf-8;" });
   if (navigator.msSaveBlob) {
     // IE 10+
     navigator.msSaveBlob(blob, csvFilePath);
