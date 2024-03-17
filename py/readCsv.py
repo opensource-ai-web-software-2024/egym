@@ -2,7 +2,7 @@ import csv
 
 def read_csv(file_name):
     data = []
-    file_path = f'./{file_name}'
+    file_path = f'../csv/{file_name}'
 
     with open(file_path, newline='') as csvfile:
         csv_reader = csv.reader(csvfile)
