@@ -1,86 +1,94 @@
-async function getMuscleParts() {
-  console.log("근육 부위 가져오기 테스트 시행");
-  const url =
-    "http://localhost:5001/getHTML?url=https://www.muscleandstrength.com/exercises";
-
+async function crawling(url, parent_selector, selector, type, attr) {
   try {
+    console.log("fetch 시도");
     const response = await fetch(url, { mode: "cors" });
     const data = await response.json();
-
     if (response.ok) {
       const html = data.html;
-      console.log(html);
-      return crawlMuscleParts(html);
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(html, "text/html");
+      console.log("selector: " + selector);
+      const parentTag = doc.querySelector(parent_selector); // 부모 선택자로 상위 태그 선택
+      const tags = parentTag.querySelectorAll(selector); // 상위 태그에서 하위 태그 여러 개를 선택
+      var targetData = [];
+      if (type === "attr") { // attribute가 필요할 때
+        [...tags].forEach((tag) => {
+          targetData.push(tag.getAttribute(attr));
+        });
+      } else { // textContent가 필요할 때
+        [...tags].forEach((tag) => {
+          targetData.push(tag.textContent.trim());
+        })
+      }
+      return targetData;
     } else {
       console.log("Error:", data.error);
       throw new Error(data.error);
     }
+  } catch (error) {
+    console.log("fetch 실패");
+    throw error;
+  }
+}
+
+function deduplication(data) {
+  var newData = [];
+  for (let i = 0; i < data.length; i += 2) {
+    newData.push(data[i]);
+  }
+  return newData;
+}
+
+async function crawlingMuscleGroup() {
+  const url = "http://localhost:5001/getHTML?url=https://www.muscleandstrength.com/exercises";
+  try {
+    const muscleGroup = await crawling(
+      url,
+      ".mainpage-category-list.exercise-category-list",
+      "a",
+      "attr",
+      "href"
+    );
+    return muscleGroup;
   } catch (error) {
     console.log("Error:", error);
     throw error;
   }
 }
 
-async function getExercises(additionalLink) {
-  console.log("운동 목록 가져오기 테스트 시행");
+async function crawlingExerciseGroup(muscleGroup) {
+  const baseUrl = "http://localhost:5001/getHTML?url=https://www.muscleandstrength.com";
+  let exerciseGroup = []; 
 
-  // 초기 URL 생성
-  let url = `http://localhost:5001/getHTML?url=https://www.muscleandstrength.com${additionalLink}`;
+  const promises = muscleGroup.map(async (muscle) => {
+    try {
+      const fullUrl = `${baseUrl}${muscle}`; 
+      const exercises = await crawling(
+        fullUrl,
+        "#mnsview-list",
+        ".node-title",
+        "text",
+      );
+      return exercises; 
+    } catch (error) {
+      console.log("Error: ", error);
+      throw error; 
+    }
+  });
 
   try {
-    const response = await fetch(url, { mode: "cors" });
-    const data = await response.json();
-
-    const html = data.html;
-    console.log(html);
-    crawlExercises(html);    
+    exerciseGroup = await Promise.all(promises); // 모든 비동기 작업이 완료될 때까지 대기
+    console.log(exerciseGroup);
+    return exerciseGroup.flat(); // 2차원 배열을 1차원 배열로 평탄화하여 반환
   } catch (error) {
-    console.log("접속 실패: ", error);
-    throw error;
+    console.log("Error in Promise.all: ", error);
+    throw error; // Promise.all 중 발생한 에러 처리
   }
 }
 
-function crawlMuscleParts(html) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, "text/html");
-
-  // .mainpage-category-list.exercise-category-list에 해당하는 첫번째 요소를 가져옴
-  const muscleCategoryList = doc.querySelector(
-    ".mainpage-category-list.exercise-category-list"
-  );
-
-  if (muscleCategoryList) {
-    // muscleCategoryList 내에 있는 .category-name에 해당하는 모든 요소들을 가져옴
-    const links = muscleCategoryList.querySelectorAll("div.cell a");
-
-    // categoryElements 내에 있는 텍스트들을 가져와 배열로 만듦
-    const hrefValues = Array.from(links).map((link) =>
-      link.getAttribute("href")
-    );
-    console.log("Category Texts:", hrefValues);
-    return hrefValues;
-  } else {
-    console.log("검색 실패");
-    return null;
-  }
-}
-
-function crawlExercises(html) {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(html, "text/html");
-
-  const exerciseList = doc.querySelector("#mnsview-list");
-
-  if (exerciseList) {
-    // muscleCategoryList 내에 있는 .category-name에 해당하는 모든 요소들을 가져옴
-    const exerciseElements = exerciseList.querySelectorAll(".node-title");
-
-    // categoryElements 내에 있는 텍스트들을 가져와 배열로 만듦
-    const exerciseTexts = Array.from(exerciseElements).map((element) =>
-      element.textContent.trim()
-    );
-    console.log("Exercise Texts:", exerciseTexts);
-    return exerciseTexts;
-  }
-}
-  
+(async () => {
+  const muscleGroup = deduplication(await crawlingMuscleGroup()); // 근육 목록 가져오기
+  console.log(muscleGroup);
+  const exerciseGroup = await crawlingExerciseGroup(muscleGroup); // 운동 목록 가져오기
+  console.log(exerciseGroup);
+})();
