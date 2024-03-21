@@ -1,160 +1,220 @@
 /* 어그로체 - Light */
 @font-face {
-    font-family: 'SBAggroL';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: "SBAggroL";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 
 /* 어그로체 - Medium */
 @font-face {
-    font-family: 'SBAggroM';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: "SBAggroM";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 
 /* 어그로체 - Bold */
 @font-face {
-    font-family: 'SBAggroB';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: "SBAggroB";
+	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 
 /* 기본 설정 */
 body {
-    padding: 0;
-    margin: 0;
+	padding: 0;
+	margin: 0;
 }
 #app {
-    background-color: #1A1A1A;
-    color: white;
-    font-family: "SBAggroL";    
-    min-height: 100%;
+	background-color: #1a1a1a;
+	color: white;
+	font-family: "SBAggroL";
+	min-height: 100%;
 }
 
 h1 {
-    font-size: 24px;
-    font-weight: 700; 
+	font-size: 24px;
+	font-weight: 700;
 }
 
 h2 {
-    font-size: 20px;
-    font-weight: 700;
+	font-size: 20px;
+	font-weight: 700;
 }
 
 h3 {
-    font-size: 16px;
-    font-weight: 700;
+	font-size: 16px;
+	font-weight: 700;
 }
 
 li {
-    text-decoration: none;
+	text-decoration: none;
 }
 a {
-    text-decoration: none;
-    color: white;
+	text-decoration: none;
+	color: white;
 }
 
 /* 헤더 */
 #header {
-    height: 80px;
-    padding: 0 48px;
-    
+	height: 80px;
+	padding: 0 48px;
 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    box-sizing: border-box; 
-    border-bottom: 1px solid white;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	box-sizing: border-box;
+	border-bottom: 1px solid white;
 }
 
 h1#logo {
-    font-family: "SBAggroB";
-    color: #3ED4B3;
+	font-family: "SBAggroB";
+	color: #3ed4b3;
 }
 
 ul#nav-bar {
-    display: flex;
-    gap: 16px;
+	display: flex;
+	gap: 16px;
 }
-div#content {
-    padding: 0 0 60px 0;
+/* 헤더 끝 */
+
+/* body 시작 */
+div#container {
+	padding: 0 0 60px 0;
 }
 
 /* 세부 검색창 */
 div#detailed-search {
-    height: 300px;
-    background-color: black;
-    margin-bottom: 60px;
+	height: 100%; /* 아래 버튼 많아져서 100%로 잡아둠 */
+	background-color: black;
+	margin-bottom: 60px;
+	padding: 10px;
 }
+
+/* 카테고리 토글 구간 */
+div#category-selectors {
+	margin: 20px;
+	width: calc(100% - 40px);
+}
+
+#category-selectors h2 {
+	padding: 0 0 10px 0; /* 미관상 h2 여백 */
+}
+
+.category-container {
+	margin-bottom: 20px;
+	white-space: nowrap;
+}
+
+.radio-container {
+	display: flex; /* 가로방향 나열, 줄 바꿈 */
+	flex-wrap: wrap;
+	gap: 10px;
+}
+
+.radio-container input {
+	display: none; /* 라디오 버튼 숨기기 */
+}
+
+/* radio 버튼 라벨 예쁘게 작업 */
+.radio-container label {
+	display: inline-block;
+	margin-right: 10px;
+	border-radius: 30px;
+	padding: 10px 20px;
+	border: 1px solid #979797;
+	max-width: 100px;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.radio-container label:hover {
+	color: black;
+	background: #e6f5f4;
+	border: 1px solid #fff;
+}
+
+/* checked 되면 hover 효과 유지, 왜 안되는지 모르겠음 */
+.radio-container input:checked + label {
+	color: black !important;
+	background: #a0f5ef !important;
+	border: 1px solid #fff !important;
+}
+
+input[type="radio"]:checked {
+	color: black !important;
+	background: #a0f5ef !important;
+	border: 1px solid #fff !important;
+}
+
 /* 검색 결과 */
 div#search-result {
-    width: calc(100% - 168px * 2);
-    margin: 0 auto;     
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+	width: calc(100% - 168px * 2);
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 /* 카드 */
 div.card {
-    width: 240px;
-    height: 200px;
+	width: 240px;
+	height: 200px;
 
-    margin-bottom: 60px; 
-    border-radius: 16px;
-    overflow: hidden;
+	margin-bottom: 60px;
+	border-radius: 16px;
+	overflow: hidden;
 
-    box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.01);
+	box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.01);
 }
 
 div.card-img {
-    width: 240px;
-    height: 120px; 
+	width: 240px;
+	height: 120px;
 }
 
 img.thumbnail {
-    width: 240px;
-    height: 120px;
-    object-fit: cover;
+	width: 240px;
+	height: 120px;
+	object-fit: cover;
 }
 
 div.card-footer {
-    width: 240px;
-    height: 80px;
-    padding: 8px 10px;
-    box-sizing: border-box;
+	width: 240px;
+	height: 80px;
+	padding: 8px 10px;
+	box-sizing: border-box;
 
-    background-color: white;
-    color: #1a1a1a;
+	background-color: white;
+	color: #1a1a1a;
 }
 
 div.card-marks {
-    margin-top: 10px;
-    display: flex;
+	margin-top: 10px;
+	display: flex;
 }
 
 div.card-mark {
-    width: 60px;
-    height: 30px;
-    text-align: center;
+	width: 60px;
+	height: 30px;
+	text-align: center;
 
-    border-right: 1px solid #EAEAEA;
+	border-right: 1px solid #eaeaea;
 }
 
 div.card-mark:last-child {
-    border-right: none;
+	border-right: none;
 }
 p.key {
-    margin-bottom: 8px;
-    display: block;
-    font-size: 8px;
+	margin-bottom: 8px;
+	display: block;
+	font-size: 8px;
 }
 
 p.value {
-    display: block;
-    font-size: 12px; 
+	display: block;
+	font-size: 12px;
 }
