@@ -137,7 +137,7 @@ div#category-selectors {
 	border: 1px solid #fff;
 }
 
-/* checked 되면 hover 효과 유지, 왜 안되는지 모르겠음 */
+/* checked 되면 hover 효과 유지, 왜 안되는지 모르겠음
 .radio-container input:checked + label {
 	color: black !important;
 	background: #a0f5ef !important;
@@ -148,7 +148,7 @@ input[type="radio"]:checked {
 	color: black !important;
 	background: #a0f5ef !important;
 	border: 1px solid #fff !important;
-}
+} */
 
 /* 검색 결과 */
 div#search-result {

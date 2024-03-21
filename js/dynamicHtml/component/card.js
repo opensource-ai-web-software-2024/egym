@@ -27,8 +27,7 @@ class CardInfo {
 function filteringHandler() {
 	searchResult = cardInfos;
 	searchResult = searchResult.filter((exerciseInfo) => {
-		return query == exerciseInfo.exerciseInfo.targetMuscleGroup;
-		// return query === exerciseInfo.exerciseName;
+		return query === exerciseInfo.exerciseName;
 	});
 	console.log(searchResult);
 	makingCards();

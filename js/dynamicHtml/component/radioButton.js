@@ -79,6 +79,19 @@ const categoryInfos = [
 	},
 ];
 
+function toggleHandler(event) {
+	console.log(event.target);
+
+	const label = event.target.parentNode;
+	if (event.target.checked) {
+		console.log(event.target.checked);
+		const label = event.target.parentNode;
+		label.style.backgroundColor = 'blue'; // 부모 요소의 배경색을 파란색으로 변경
+	} else {
+		label.style.backgroundColor = 'none'; 
+	}
+}
+
 const categorySelectors = document.getElementById("category-selectors");
 
 categoryInfos.forEach((category) => {
@@ -111,6 +124,8 @@ categoryInfos.forEach((category) => {
 			index = 1;
 			radioInput.checked = true;
 		}
+		radioInput.addEventListener('click', toggleHandler);
+
 		// radio 버튼 label에 삽입
 		radioLabel.appendChild(radioInput);
 		// 라벨 텍스트 지정 (toggleBtnList 항목)
