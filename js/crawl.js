@@ -86,6 +86,11 @@ async function crawlingExerciseGroup(muscleGroup) {
   }
 }
 
+async function crawlingExerciseInfoGroup() {
+  // 윤태 형이 작업할 부분
+  // card.js에 있는 객체들 참고하여 운동 정보 반환하도록 할 것
+}
+
 (async () => {
   const muscleGroup = deduplication(await crawlingMuscleGroup()); // 근육 목록 가져오기
   console.log(muscleGroup);

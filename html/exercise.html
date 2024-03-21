@@ -5,7 +5,11 @@
         <link rel="icon" type="image/x-icon" href="../favicon.ico">
         <!-- 기본 css 설정 초기화 -->
         <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
+        <!-- 구글 material 아이콘 -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <!-- 커스텀 css -->
         <link rel="stylesheet" href="../css/style.css">
+        
         <!-- jQuery CDN 추가 (일반 버전) -->
         <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
         <!-- Papaparse: JSON을 CSV로 변환하는 라이브러리 -->
@@ -22,22 +26,13 @@
             <div id="content">
                 <div id="detailed-search">
                     <input id="search-bar" type="text" placeholder="운동명을 검색해보세요">
+                    <span id="search-btn" class="material-symbols-outlined">
+                        search
+                    </span>
+                    <div id="category-selectors">
+                    </div>
                 </div>
                 <div id="search-result">
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
-                    <div class="card"></div>
                 </div>
             </div>
             
@@ -45,5 +40,7 @@
         <script src="../js/dynamicHtml/basicSetting.js"></script>
         <script src="../js/dynamicHtml/component/header.js"></script>
         <script src="../js/dynamicHtml/component/card.js"></script>
+        <script src="../js/dynamicHtml/component/radioButton.js"></script>
+        <script src="../js/dynamicHtml/component/searchBar.js"></script>
     </body>
 </html>
