@@ -137,6 +137,12 @@ div#category-selectors {
 	border: 1px solid #fff;
 }
 
+.radio-container-checked {
+	color: black !important;
+	background: #3ed4b3 !important;
+	border: 1px solid #fff !important;
+}
+
 /* checked 되면 hover 효과 유지, 왜 안되는지 모르겠음
 .radio-container input:checked + label {
 	color: black !important;
