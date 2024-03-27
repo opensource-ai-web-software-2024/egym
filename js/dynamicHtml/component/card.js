@@ -1,28 +1,6 @@
-// 운동 정보 (테스트용)
-class ExerciseInfo {
-	constructor(targetMuscleGroup, exerciseType, equipmentRequired, mechanics, forceType, experienceLevel, secondaryMuscles) {
-		this.targetMuscleGroup = targetMuscleGroup;
-		this.exerciseType = exerciseType;
-		this.equipmentRequired = equipmentRequired;
-		this.mechanics = mechanics;
-		this.forceType = forceType;
-		this.experienceLevel = experienceLevel;
-		this.secondaryMuscles = secondaryMuscles;
-	}
-}
-
-// 카드 정보 (테스트용)
-class CardInfo {
-	constructor(exerciseName, exerciseInfo, exerciseIntroduction, exerciseProcedure, exerciseTips, thumbnailLink, youtubeLink) {
-		this.exerciseName = exerciseName;
-		this.exerciseInfo = exerciseInfo;
-		this.exerciseIntroduction = exerciseIntroduction;
-		this.exerciseProcedure = exerciseProcedure;
-		this.exerciseTips = exerciseTips;
-		this.thumbnailLink = thumbnailLink;
-		this.youtubeLink = youtubeLink;
-	}
-}
+import { CardInfo } from '../class/cardInfo.js';
+import { ExerciseInfo } from '../class/exerciseInfo.js';
+import { createExerciseInfoContainer } from './exerciseInfoContainer.js'
 
 export function filteringHandler(query) {
 	searchResult = cardInfos;
@@ -127,6 +105,11 @@ function makingCards() {
 		var card = document.createElement("div");
 		card.classList.add("card");
 		searchResultDiv.appendChild(card);
+
+		card.addEventListener('click', () => {
+			console.log(searchInfo);
+			createExerciseInfoContainer(searchInfo);
+		});
 
 		// 카드 div 추가
 		var cardDiv = document.createElement("div");

@@ -7,6 +7,6 @@ function categoryClassification(categoryInfo) {
     document.getElementById("div#category-classification");
     document.appendChild();
 
-    var categoryList = document.createElement("div");
+    var headline = ""
 }
 
