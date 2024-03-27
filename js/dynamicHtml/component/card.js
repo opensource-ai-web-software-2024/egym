@@ -24,11 +24,14 @@ class CardInfo {
 	}
 }
 
-function filteringHandler() {
+export function filteringHandler(query) {
 	searchResult = cardInfos;
-	searchResult = searchResult.filter((exerciseInfo) => {
-		return query === exerciseInfo.exerciseName;
-	});
+	console.log(query);
+	if (query.trim() !== "") {
+		searchResult = searchResult.filter((exerciseInfo) => {
+			return query === exerciseInfo.exerciseName;
+		});
+	}
 	console.log(searchResult);
 	makingCards();
 }

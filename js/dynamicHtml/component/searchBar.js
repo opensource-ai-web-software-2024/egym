@@ -1,3 +1,5 @@
+import { filteringHandler } from './card.js';
+ 
 var query = "";
 
 var searchBar = document.getElementById("search-bar");
@@ -6,7 +8,7 @@ console.log(searchBar.value);
 
 function searchHandler() {
     query = searchBar.value;
-    filteringHandler(); 
+    filteringHandler(query); 
 }
 
 var searchBtn = document.getElementById("search-btn");

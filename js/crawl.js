@@ -31,7 +31,7 @@ async function crawling(url, parent_selector, selector, type, attr) {
   }
 }
 
-function deduplication(data) {
+function deduplicationA(data) {
   var newData = [];
   for (let i = 0; i < data.length; i += 2) {
     newData.push(data[i]);
@@ -66,10 +66,11 @@ async function crawlingExerciseGroup(muscleGroup) {
       const exercises = await crawling(
         fullUrl,
         "#mnsview-list",
-        ".node-title",
-        "text",
+        "a",
+        "attr",
+        "href"
       );
-      return exercises; 
+      return exercises;
     } catch (error) {
       console.log("Error: ", error);
       throw error; 
@@ -86,14 +87,70 @@ async function crawlingExerciseGroup(muscleGroup) {
   }
 }
 
-async function crawlingExerciseInfoGroup() {
+function deduplicationB(data) {
+  var newData = [];
+  for (let i = 0; i < data.length; i += 3) {
+    newData.push(data[i]);
+  }
+  return newData;
+}
+
+async function crawlingExerciseInfoGroup(exerciseGroup) {
   // 윤태 형이 작업할 부분
   // card.js에 있는 객체들 참고하여 운동 정보 반환하도록 할 것
+
+  const baseUrl = "http://localhost:5001/getHTML?url=https://www.muscleandstrength.com";
+  let exerciseInfo = [];
+
+  const promises = exerciseGroup.map(async (exercise) => {
+    try {
+      const fullUrl = `${baseUrl}${exercise}`;
+      console.log(fullUrl);
+      const Info = await crawling(
+        fullUrl,
+        "#block-system-main",
+        "article",
+        "text"
+      );
+      console.log(Info);
+      return Info; 
+    } catch (error) {
+        console.log("Error: ", error);
+        throw error; 
+    }
+  });
+
+  try {
+    exerciseInfo = await Promise.all(promises);
+    console.log(exerciseInfo);
+    return exerciseInfo;
+  } catch (error) {
+    console.log("Error in Promise.all: ", error);
+    throw error; // Promise.all 중 발생한 에러 처리
+  }
+}
+
+async function deletePage(data, muscle) {
+  var newData = [];
+  for (let i = 0; i < data.length; i += 1) {
+    let a = 0;
+    for(let j = 0; j < muscle.length; j += 1) {
+      if (data[i].indexOf(muscle[j]) != -1) {
+        a = 1;
+      }
+    }
+    if (a != 1) {
+      newData.push(data[i]);
+    }
+  }
+  return newData;
 }
 
 (async () => {
-  const muscleGroup = deduplication(await crawlingMuscleGroup()); // 근육 목록 가져오기
+  const muscleGroup = deduplicationA(await crawlingMuscleGroup()); // 근육 목록 가져오기
   console.log(muscleGroup);
-  const exerciseGroup = await crawlingExerciseGroup(muscleGroup); // 운동 목록 가져오기
+  const exerciseGroup = deduplicationB(await deletePage(await crawlingExerciseGroup(muscleGroup), muscleGroup)); // 운동 목록 가져오기
   console.log(exerciseGroup);
+  const exerciseInfoGroup = await crawlingExerciseInfoGroup(exerciseGroup); // 운동 상세 정보 가져오기 (유튜브 등)
+  console.log(exerciseInfoGroup);
 })();
