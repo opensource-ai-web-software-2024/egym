@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 기본 css 설정 초기화 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
+    <!-- 구글 material 아이콘 -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- 커스텀 css -->
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/routine_style.css">
+</head>
+
+<body>
+    <div id="app">
+        <div id="header"></div>
+        <div id="container">
+            <!-- 루틴 만들기 버튼 -->
+            <div id="create-routine">
+                <label for="create">
+                    <input type="button" id="create" name="create" value="만들기">만들기
+                </label>
+            </div>
+            <div id="routine-list">
+
+            </div>
+
+        </div>
+    </div>
+
+
+    <script src="../js/dynamicHtml/component/header.js"></script>
+    <script src="../js/dynamicHtml/component/createRoutineList.js"></script>
+</body>
+
+</html>

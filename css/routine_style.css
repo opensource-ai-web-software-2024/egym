@@ -1,0 +1,115 @@
+@font-face {
+	font-family: "Material Icons";
+	font-style: normal;
+	font-weight: 400;
+	src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+	src: local("Material Icons"), local("MaterialIcons-Regular"), url(https://example.com/MaterialIcons-Regular.woff2) format("woff2"), url(https://example.com/MaterialIcons-Regular.woff) format("woff"),
+		url(https://example.com/MaterialIcons-Regular.ttf) format("truetype");
+}
+
+.material-icons {
+	font-family: "Material Icons";
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px; /* Preferred icon size */
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Support for IE. */
+	font-feature-settings: "liga";
+}
+
+body {
+	background-color: #1a1a1a;
+}
+
+div#container {
+	width: 100%;
+	height: 100%;
+}
+
+div#create-routine {
+	display: flex; /* 가로방향 나열, 줄 바꿈 */
+	flex-wrap: wrap;
+	gap: 10px;
+	padding: 20px 20px;
+}
+
+div#create-routine input {
+	display: none; /* 라디오 버튼 숨기기 */
+}
+
+/* radio 버튼 라벨 예쁘게 작업 */
+div#create-routine label {
+	display: inline-block;
+	margin-right: 10px;
+	border-radius: 30px;
+	padding: 10px 20px;
+	border: 1px solid #979797;
+	max-width: 100px;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+div#routine-list {
+	margin: 20px;
+	width: calc(100% - 40px);
+}
+
+.new-routine {
+	display: flex; /* 가로방향 나열, 줄 바꿈 */
+	flex-wrap: wrap;
+	gap: 10px;
+	margin: 5%;
+	padding: 30px;
+	background-color: rgb(33, 33, 33);
+	justify-content: space-between;
+}
+
+.new-routine .toggle-button {
+	background-color: rgb(33, 33, 33);
+}
+
+.toggle-button,
+.delete-button {
+	/* 글자 예쁘게 넣기 위한 */
+	display: flex;
+	cursor: pointer;
+	align-items: center;
+}
+
+.toggle-button:hover,
+.delete-button:hover {
+	color: lightgray; /* 마우스 오버시 색상 변경 */
+}
+
+.button-label {
+	font-size: 0.7em;
+}
+
+.additional-content {
+	margin: 3% 0 0;
+	display: none; /* 초기에는 추가 내용을 숨김 */
+	width: 100%; /* 부모 너비에 맞춤 */
+	flex-direction: column; /* 내용을 수직으로 쌓음 */
+	align-items: flex-end;
+}
+
+/* 루틴 삭제 이펙트 */
+.fade-out {
+	opacity: 0;
+	transition: opacity 0.3s ease; /* 투명도 변화에 대한 애니메이션 효과 추가 */
+}
