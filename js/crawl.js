@@ -301,10 +301,14 @@ async function exerciseInfoObject(data) {
       var Info3 = Info[2]; // 운동 설명
       Info3 = Info3.split(exerciseName);
 
+      var overview = 'None';
+      var instruction = 'None';
+      var tip = 'None';
+
       if (Info3.length == 4) {
-        var overview = Info3[1];
-        var instruction = Info3[2];
-        var tip = Info3[3];
+        overview = Info3[1];
+        instruction = Info3[2];
+        tip = Info3[3];
 
         overview = overview.split('Overview');
         overview = overview[1];
@@ -316,8 +320,8 @@ async function exerciseInfoObject(data) {
         tip = tip[1];
 
       } else if (Info3.length == 3) {
-        var instruction = Info3[1];
-        var tip = Info3[2];
+        instruction = Info3[1];
+        tip = Info3[2];
 
         instruction = instruction.split('Instructions');
         instruction = instruction[1];
@@ -329,20 +333,20 @@ async function exerciseInfoObject(data) {
         Info3 = Info3[1];
         try {
           Info3 = Info3.split('Exercise Tips:');
-          var instruction = Info3[0];
+          instruction = Info3[0];
 
           instruction = instruction.split('Instructions');
           instruction = instruction[1];
 
-          var tip = Info3[1];
+          tip = Info3[1];
         } catch (error) {
           Info3 = Info3.split('Tips:');
-          var instruction = Info3[0];
+          instruction = Info3[0];
 
           instruction = instruction.split('Instructions');
           instruction = instruction[1];
 
-          var tip = Info3[1];
+          tip = Info3[1];
         }
       }
 
@@ -354,30 +358,32 @@ async function exerciseInfoObject(data) {
         instruction = instruction.trim();
       } catch {}
 
+      if (tip != null) {
+        if (tip.indexOf(':') != -1) {
+          tip = tip.split(':');
+          tip = tip[1];
+        } else {}
+      } else {}
+
       try {
         tip = tip.trim();
-      } catch{}
-    
-      console.log(overview);  
-      console.log(instruction);
-      console.log(tip);
-      
+      } catch{}    
 
-      // const exerciseObject = new Object();
+      const exerciseObject = new Object();
 
-      // exerciseObject.exerciseName = `${exerciseName[i]}`;
-      // exerciseObject.targetMuscle = `${targetMuscle}`;
-      // exerciseObject.exerciseType = `${exerciseType}`;
-      // exerciseObject.equipmentRequired = `${equipmentRequired}`;
-      // exerciseObject.mechanics = `${mechanics}`;
-      // exerciseObject.forceType = `${forceType}`;
-      // exerciseObject.experienceLevel = `${experienceLevel}`;
-      // exerciseObject.secondaryMuscle = `${secondaryMuscle}`;
-      // exerciseObject.overview = `${overview}`;
-      // exerciseObject.instructions = `${instructions}`;
-      // exerciseObject.tips = `${tips}`;  
+      exerciseObject.exerciseName = `${exerciseName}`;
+      exerciseObject.targetMuscle = `${targetMuscle}`;
+      exerciseObject.exerciseType = `${exerciseType}`;
+      exerciseObject.equipmentRequired = `${equipmentRequired}`;
+      exerciseObject.mechanics = `${mechanics}`;
+      exerciseObject.forceType = `${forceType}`;
+      exerciseObject.experienceLevel = `${experienceLevel}`;
+      exerciseObject.secondaryMuscle = `${secondaryMuscle}`;
+      exerciseObject.overview = `${overview}`;
+      exerciseObject.instructions = `${instruction}`;
+      exerciseObject.tips = `${tip}`;  
 
-      // return exerciseObject;
+      return exerciseObject;
 
     } catch (error) {
         console.log("Error: ", error);
@@ -392,148 +398,22 @@ async function exerciseInfoObject(data) {
   } catch (error) {
     console.log("Error in Promise.all: ", error);
     throw error; // Promise.all 중 발생한 에러 처리
-  }
+  }  
+}
 
-  // let toString = data.toString();
-  // var Info = toString.split('Exercise Profile');
-  // var Name = Info[0]; // 운동 이름
-  // console.log('Name: ' + Name);
-  // Info = Info[1];
-  // Info = Info.split('Target Muscle Group');
-  // Info = Info[1];
-  // Info = Info.split('Exercise Type');
-  // var targetMuscle = Info[0]; // 운동 부위
-  // Info = Info[1].split('Equipment Required');
-  // var exerciseType = Info[0]; // 운동 종류
-  // Info = Info[1].split('Mechanics');
-  // var equipmentRequired = Info[0]; // 도구 필요
-  // Info = Info[1].split('Force Type');
-  // var mechanics = Info[0]; // 원리
-  // Info = Info[1].split('Experience Level');
-  // var forceType = Info[0]; // 힘의 방향
-  // Info = Info[1].split('Secondary Muscles');
-  // var experienceLevel = Info[0]; // 난이도
-  // var secondaryMuscle = Info[1]; // 협응근
-  // secondaryMuscle = secondaryMuscle.split("\n").join("");
+async function convertToCSV(objArray) {
+  const array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+  let csv = '';
 
-  // var Info2 = a[2];
+  // 헤더 생성
+  csv += Object.keys(array[0]).join(',') + '\n';
 
-  // Info2 = Info2[1].split('Overview');
-  // Info2 = Info2[1];
-  // Info2 = Info2[1].split('Instructions');
-  // var overview = Info2[0];
-  // overview = overview.split(Name);
-  // overview = overview[0];
-  // overview = overview.split("\n").join("");
-  // Info2 = Info2[1].split('Tips');
-  // var instructions = Info2[0];
-  // instructions = instructions.split(Name);
-  // instructions = instructions[0];
-  // instructions = instructions.split("\n").join("");
-  // var tips = Info2[1];
-  // tips = tips.split("\n").join("");
+  // 데이터 생성
+  array.forEach(item => {
+      csv += Object.values(item).join(',') + '\n';
+  });
 
-  // const exerciseObject = new Object();
-
-  // exerciseObject.targetMuscle = `${targetMuscle}`;
-  // exerciseObject.exerciseType = `${exerciseType}`;
-  // exerciseObject.equipmentRequired = `${equipmentRequired}`;
-  // exerciseObject.mechanics = `${mechanics}`;
-  // exerciseObject.forceType = `${forceType}`;
-  // exerciseObject.experienceLevel = `${experienceLevel}`;
-  // exerciseObject.secondaryMuscle = `${secondaryMuscle}`;
-  // exerciseObject.overview = `${overview}`;
-  // exerciseObject.instructions = `${instructions}`;
-  // exerciseObject.tips = `${tips}`;
-
-  // return exerciseObject;
-
-
-  // let exerciseObjectList = [];
-
-  // const promises = data.map(async (data, i) => {
-  //   try {
-  //     let toString = data.toString();
-  //     var a = toString.split('Target Muscle Group');
-  //     var Info = a[1];
-  //     Info = Info.split('Exercise Type');
-
-  //     var targetMuscle = Info[0];
-  //     var Info = Info[1].split('Equipment Required');
-  //     var exerciseType = Info[0];
-  //     var Info = Info[1].split('Mechanics');
-  //     var equipmentRequired = Info[0];
-  //     var Info = Info[1].split('Force Type');
-  //     var mechanics = Info[0];
-  //     var Info = Info[1].split('Experience Level');
-  //     var forceType = Info[0];
-  //     var Info = Info[1].split('Secondary Muscles');
-  //     var experienceLevel = Info[0];
-  //     var secondaryMuscle = Info[1];
-  //     secondaryMuscle = secondaryMuscle.split("\n").join("");
-
-  //     var Info2 = a[2];
-      
-  //     Info2 = Info2.split(targetMuscle);
-  //     try {
-  //       Info2 = Info2[1].split('Overview');
-  //     } catch (error) {
-  //       var overview = 'None';
-  //     }
-  //     try {
-  //       Info2 = Info2[1].split('Instructions');
-  //     } catch (error) {
-  //       var instructions = 'None';
-  //     }
-  //     var overview = Info2[0];
-  //     overview = overview.split(exerciseName[i]);
-  //     overview = overview[0];
-  //     overview = overview.split("\n").join("");
-  //     try {
-  //       Info2 = Info2[1].split('Tips');
-  //       var instructions = Info2[0];
-  //       instructions = instructions.split(exerciseName[i]);
-  //       instructions = instructions[0];
-  //       instructions = instructions.split("\n").join("");
-  //       var tips = Info2[1];
-  //       tips = tips.split("\n").join("");
-  //     } catch (error) {
-  //       var instructions = 'None';
-  //       var tips = 'None';
-  //     }
-
-  //     const exerciseObject = new Object();
-
-  //     exerciseObject.exerciseName = `${exerciseName[i]}`;
-  //     exerciseObject.targetMuscle = `${targetMuscle}`;
-  //     exerciseObject.exerciseType = `${exerciseType}`;
-  //     exerciseObject.equipmentRequired = `${equipmentRequired}`;
-  //     exerciseObject.mechanics = `${mechanics}`;
-  //     exerciseObject.forceType = `${forceType}`;
-  //     exerciseObject.experienceLevel = `${experienceLevel}`;
-  //     exerciseObject.secondaryMuscle = `${secondaryMuscle}`;
-  //     exerciseObject.overview = `${overview}`;
-  //     exerciseObject.instructions = `${instructions}`;
-  //     exerciseObject.tips = `${tips}`;  
-
-  //     return exerciseObject;
-
-  //   } catch (error) {
-  //       console.log("Error: ", error);
-  //       throw error; 
-  //   }
-  // });
-
-  // try {
-  //   exerciseObjectList = await Promise.all(promises);
-  //   console.log(exerciseObjectList);
-  //   return exerciseObjectList;
-  // } catch (error) {
-  //   console.log("Error in Promise.all: ", error);
-  //   throw error; // Promise.all 중 발생한 에러 처리
-  // }
-
-  
+  return csv;
 }
 
 (async () => {
@@ -544,6 +424,12 @@ async function exerciseInfoObject(data) {
   const exerciseInfoGroup = await crawlingExerciseInfoGroup(exerciseGroup); // 운동 상세 정보 가져오기 (유튜브 등)
   console.log(exerciseInfoGroup);
   const exerciseObjectList = await exerciseInfoObject(exerciseInfoGroup);
-  // console.log(exerciseObjectList);
-  // return exerciseObjectList;
+
+  const csvContent = await convertToCSV(exerciseObjectList);
+  const encodedUri = encodeURI('data:text/csv;charset=utf-8,' + csvContent);
+  const link = document.createElement('a');
+  link.setAttribute('href', encodedUri);
+  link.setAttribute('download', 'exercises.csv');
+  document.body.appendChild(link); // 필요시 다른 요소에 추가 가능
+  link.click();
 })();
