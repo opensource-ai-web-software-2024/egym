@@ -362,6 +362,7 @@ async function exerciseInfoObject(data) {
         tip = tip.split("\n").join("");
 
         console.log(instruction);
+        console.log(1);
         console.log(tip);
 
       }
