@@ -315,10 +315,6 @@ async function exerciseInfoObject(data) {
         tip = tip.split('Tips');
         tip = tip[1];
 
-        console.log(overview);
-        console.log(instruction);
-        console.log(tip);
-
       } else if (Info3.length == 3) {
         var instruction = Info3[1];
         var tip = Info3[2];
@@ -328,9 +324,6 @@ async function exerciseInfoObject(data) {
 
         tip = tip.split('Tips');
         tip = tip[1];
-
-        console.log(instruction);
-        console.log(tip);
 
       } else if (Info3.length == 2) {
         Info3 = Info3[1];
@@ -351,21 +344,23 @@ async function exerciseInfoObject(data) {
 
           var tip = Info3[1];
         }
-
-        try {
-          overview = overview.split("\n").join("");
-        } catch {
-      
-        }
-        
-        instruction = instruction.split("\n").join("");
-        tip = tip.split("\n").join("");
-
-        console.log(instruction);
-        console.log(1);
-        console.log(tip);
-
       }
+
+      try {
+        overview = overview.trim();
+      } catch {}
+
+      try {
+        instruction = instruction.trim();
+      } catch {}
+
+      try {
+        tip = tip.trim();
+      } catch{}
+    
+      console.log(overview);  
+      console.log(instruction);
+      console.log(tip);
       
 
       // const exerciseObject = new Object();
