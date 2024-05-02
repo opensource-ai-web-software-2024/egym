@@ -50,7 +50,7 @@ h3 {
 }
 
 li {
-	list-style: none; 
+	list-style: none;
 	text-decoration: none;
 }
 a {
@@ -169,13 +169,16 @@ div#search-result {
 /* 카드 */
 div.card {
 	width: 240px;
-	height: 200px;
 
 	margin-bottom: 60px;
 	border-radius: 16px;
 	overflow: hidden;
 
 	box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.01);
+}
+div.card h3 {
+	margin-top: 12px;
+	margin-bottom: 0;
 }
 
 div.card-img {
@@ -191,7 +194,7 @@ img.thumbnail {
 
 div.card-footer {
 	width: 240px;
-	height: 80px;
+	height: 110px;
 	padding: 8px 10px;
 	box-sizing: border-box;
 
@@ -218,7 +221,7 @@ div.card-mark:last-child {
 p.key {
 	margin-bottom: 8px;
 	display: block;
-	font-size: 8px;
+	font-size: 10px;
 }
 
 p.value {

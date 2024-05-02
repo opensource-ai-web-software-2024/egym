@@ -53,16 +53,26 @@ function createAdditionalContent() {
 	const additionalContent = document.createElement("div");
 	additionalContent.classList.add("additional-content");
 
-	// additional-content에 들어갈 삭제 버튼
-	const deletButton = document.createElement("span");
-	const deletButtonLabel = document.createElement("span");
-	deletButtonLabel.classList.add("button-label");
-	deletButtonLabel.textContent = "삭제하기";
-	deletButton.classList.add("material-icons", "delete-button");
-	deletButton.textContent = "delete";
+	// additional-content에 들어갈 수정 버튼
+	const modifyButton = document.createElement("span");
+	const modifyButtonLabel = document.createElement("span");
+	modifyButtonLabel.classList.add("button-label");
+	modifyButtonLabel.textContent = "수정하기";
+	modifyButton.classList.add("material-icons", "edit-button");
+	modifyButton.textContent = "edit";
 
-	deletButton.appendChild(deletButtonLabel);
-	additionalContent.appendChild(deletButton);
+	// additional-content에 들어갈 삭제 버튼
+	const deleteButton = document.createElement("span");
+	const deleteButtonLabel = document.createElement("span");
+	deleteButtonLabel.classList.add("button-label");
+	deleteButtonLabel.textContent = "삭제하기";
+	deleteButton.classList.add("material-icons", "delete-button");
+	deleteButton.textContent = "delete";
+
+	modifyButton.appendChild(modifyButtonLabel);
+	deleteButton.appendChild(deleteButtonLabel);
+	additionalContent.appendChild(deleteButton);
+	additionalContent.appendChild(modifyButton);
 
 	return additionalContent;
 }
@@ -111,7 +121,7 @@ function toggleRoutine(event) {
 
 // 루틴 삭제
 function deleteRoutine(event) {
-	if (event.target.classList.contains("delete-button") || event.target.classList.contains("button-label")) {
+	if (event.target.classList.contains("delete-button")) {
 		const routineDiv = event.target.closest(".new-routine");
 		routineDiv.classList.add("fade-out"); // 삭제 효과
 		setTimeout(function () {
