@@ -1,3 +1,5 @@
+import { getNowDateString } from "../shared/nowDate.js";
+
 const routineListSelector = document.getElementById("routine-list");
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -5,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	createButton.addEventListener("click", function () {
 		// 루틴 제목 자동 생성을 위한 날짜 저장
-		const todayDate = createDate();
+		const todayDate = getNowDateString();
 
 		// new-routine 박스 생성
 		const routineDiv = createNewRoutine(todayDate);
@@ -24,17 +26,6 @@ document.addEventListener("DOMContentLoaded", function () {
 	// 루틴 삭제
 	routineListSelector.addEventListener("click", deleteRoutine);
 });
-
-// 루틴 생성
-function createDate() {
-	// 루틴 제목 자동 생성을 위한 날짜 저장
-	const today = new Date();
-	const year = today.getFullYear(); // 연도
-	const month = today.getMonth() + 1; // 월 (0부터 시작하므로 1을 더해줌)
-	const day = today.getDate(); // 일
-
-	return year + "-" + month + "-" + day;
-}
 
 function createNewRoutine(todayDate) {
 	// new-routine 박스 생성 (루틴 큰 상자)
