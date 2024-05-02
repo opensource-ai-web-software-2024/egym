@@ -1,9 +1,12 @@
+import os
 import csv
 
 def read_csv(file_name):
+    
     data = []
-    file_path = f'../csv/{file_name}'
-
+    file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'csv', file_name))
+    print(file_path)
+    
     with open(file_path, newline='') as csvfile:
         csv_reader = csv.reader(csvfile)
         
