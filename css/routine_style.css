@@ -84,14 +84,17 @@ div#routine-list {
 }
 
 .toggle-button,
+.edit-button,
 .delete-button {
 	/* 글자 예쁘게 넣기 위한 */
 	display: flex;
 	cursor: pointer;
 	align-items: center;
+	margin-left: 10px;
 }
 
 .toggle-button:hover,
+.edit-button:hover,
 .delete-button:hover {
 	color: lightgray; /* 마우스 오버시 색상 변경 */
 }
@@ -104,7 +107,7 @@ div#routine-list {
 	margin: 3% 0 0;
 	display: none; /* 초기에는 추가 내용을 숨김 */
 	width: 100%; /* 부모 너비에 맞춤 */
-	flex-direction: column; /* 내용을 수직으로 쌓음 */
+	flex-direction: row-reverse; /* 내용을 수직으로 쌓음 */
 	align-items: flex-end;
 }
 
