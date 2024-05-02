@@ -1,4 +1,4 @@
-import {getCrawlingData} from "./crawl.js";
+import {getCrawlingData} from "../crawl.js";
 
 function writeCsv(cardInfos) {
   const csvFilePath = "exercise.csv";
