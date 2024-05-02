@@ -36,7 +36,7 @@ async function href(doc) {
 
     //테스트용 크롤링
 
-    muscleGroup.push(a[1].getAttribute("href"));
+    muscleGroup.push(a[2].getAttribute("href"));
     console.log("muclsGroup:", muscleGroup);
     return muscleGroup;
 
@@ -96,17 +96,13 @@ async function getExerciseInfo(exercises) {
       console.log(fullUrl);
       const exerciseDoc = await crawling(fullUrl);
 
-      var title = exercise.name;
       var videoLink = null;
       try {
         videoLink = exerciseDoc.querySelector(".video-wrap iframe");
         videoLink = videoLink.getAttribute("src");
       } catch {
       }
-      var targetMuscle = exerciseDoc.querySelector(".node-stats-block a");
-      targetMuscle = targetMuscle.textContent.trim();
-      console.log(targetMuscle);
-      
+
       var exerciseProfileList = []
       var exerciseProfile = exerciseDoc.querySelectorAll(".node-stats-block li");
       exerciseProfile.forEach((text) => {
@@ -114,13 +110,81 @@ async function getExerciseInfo(exercises) {
         exerciseProfileList.push(text);
       })
 
-      console.log(title);
+      var targetMuscle = exerciseProfileList[0];
+      targetMuscle = targetMuscle.split("Target Muscle Group")[1];
+
+      var exerciseType = exerciseProfileList[1];
+      exerciseType = exerciseType.split("Exercise Type")[1];
+
+      var equipment = exerciseProfileList[2];
+      equipment = equipment.split("Equipment Required")[1];
+
+      var mechanism = exerciseProfileList[3];
+      mechanism = mechanism.split("Mechanics")[1];
+
+      var forceType = exerciseProfileList[4];
+      forceType = forceType.split("Force Type")[1];
+
+      var level = exerciseProfileList[5];
+      level = level.split("Experience Level")[1];
+
+      var second = exerciseProfileList[6];
+      second = second.split("Secondary Muscles")[1];
+      second = second.replaceAll("\n", '');
+
+
       var overview = null;
+      var overviewList = []
       try {
-        overview = exerciseDoc.querySelector(".field-name-field-exercise-overview");
+        overview = exerciseDoc.querySelectorAll(".content h2");
+        overview.forEach((text)=>{
+          text = text.textContent;
+          text = text.split(`${exercise.name}`)[1];
+          text = text.replaceAll(" ", '');
+          overviewList.push(text);
+        })
+        console.log(overviewList);
+      } catch {
+      }
+      console.log(exercise.name);
+      try {
+        var overview = exerciseDoc.querySelector(".field-name-field-exercise-overview");
         overview = overview.textContent;
         console.log(overview);
       } catch {
+
+      }
+
+      var tip = null;
+
+      try {
+        var instruction = exerciseDoc.querySelector(".field-type-text-with-summary");
+        instruction = instruction.textContent;
+        instruction = instruction.replaceAll("\n", ' ');
+        if (instruction.split("Tips:")[1] != null){
+          tip = instruction.split("Tips:")[1];
+          instruction = instruction.split("Tips:")[0];
+          console.log(instruction);
+          console.log(tip);
+        } else if (instruction.split("Tips")[1] != null) {
+          tip = instruction.split("Tips")[1];
+          instruction = instruction.split("Tips")[0];
+          console.log(instruction);
+          console.log(tip);
+        } else {
+          console.log(instruction);
+        }
+      } catch {
+
+      }
+
+      try {
+        tip = exerciseDoc.querySelector(".field-name-field-exercise-tips");
+        tip = tip.textContent;
+        tip = tip.replaceAll("\n", ' ');
+        console.log(tip);
+      } catch {
+        
       }
 
       var exerciseInfo = new Object();
@@ -129,8 +193,15 @@ async function getExerciseInfo(exercises) {
       exerciseInfo.link = exercise.link;
       exerciseInfo.videoLink = videoLink;
       exerciseInfo.targetMuscle = targetMuscle;
-      exerciseInfo.exerciseProfile = exerciseProfileList;
+      exerciseInfo.exerciseType = exerciseType;
+      exerciseInfo.equipment = equipment;
+      exerciseInfo.mechanism = mechanism;
+      exerciseInfo.forceType = forceType;
+      exerciseInfo.level = level;
+      exerciseInfo.second = second;
       exerciseInfo.overview = overview;
+      exerciseInfo.instruction = instruction;
+      exerciseInfo.tip = tip;
 
       return exerciseInfo;
 
