@@ -1,27 +1,33 @@
-function writeCsv(hrefs = ["/exercises/abs.html"]) {
+function writeCsv(cardInfos) {
   const csvFilePath = "exercise.csv";
-  getMuscleParts();
   // CSV 데이터 준비
   const data = [];
-  data.push([
-    "운동명",
-    "운동 정보",
-    "운동 소개",
-    "운동 절차",
-    "운동 팁",
-    "썸네일 링크",
-    "유튜브 링크",
-  ]);
 
-  console.log(hrefs);
-  hrefs.forEach((href) => {
-    let exerciseName = href.split("/exercises/")[1];
+  // 컬럼 삽입
+  data.push(
+    [
+      "운동명",
+      "운동 정보",
+      "운동 소개",
+      "운동 절차",
+      "운동 팁",
+      "썸네일 링크",
+      "유튜브 링크",
+    ]
+  );
 
-    if (exerciseName.endsWith(".html")) {
-      exerciseName = exerciseName.split(".html")[0];
-    }
-
-    data.push([exerciseName]); // 행 추가
+  // 카드 정보를 CSV 데이터에 추가
+  cardInfos.forEach(cardInfo => {
+    const row = [
+      cardInfo.exerciseName,
+      cardInfo.exerciseInfo,
+      cardInfo.exerciseIntroduction,
+      cardInfo.exerciseProcedure,
+      cardInfo.exerciseTip,
+      cardInfo.thumbnailLink,
+      cardInfo.youtubeLink,
+    ];
+    data.push(row);
   });
 
   // Papa Parse로 CSV 파일 작성

@@ -242,4 +242,6 @@ async function getExerciseInfo(exercises) {
   const exercises = await allExercise(href1);
   const exerciseInfo = await getExerciseInfo(exercises);
   console.log(exerciseInfo);
+
+  
 })();

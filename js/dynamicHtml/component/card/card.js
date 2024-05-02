@@ -1,5 +1,5 @@
 import { cardInfosExample } from '../../shared/cardInfosExample.js';
-import { createExerciseInfoContainer } from '../exerciseInfoContainer.js'
+import { createExerciseInfoContainer } from '../exerciseInfoContainer/exerciseInfoContainer.js'
 
 export function filteringHandler(query) {
 	searchResult = cardInfos;

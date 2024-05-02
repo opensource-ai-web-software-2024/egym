@@ -1,3 +1,5 @@
+import { createExerciseInfoContent } from "./exerciseInfoContent.js";
+
 // 페이지 생성 여부
 // 컴포넌트를 한 번만 생성해야 하므로 변수가 필요
 var isCreated = false; 
@@ -11,69 +13,13 @@ export function createExerciseInfoContainer(cardInfo) {  // 운동 상세 정보
     var existingContent = document.getElementById("exercise-info-content");
     if (existingContent) {
         existingContent.remove();
-        createExerciseInfoContent(cardInfo);
+        createExerciseInfoContent(exerciseInfoContainer, exerciseListContainer, cardInfo);
     }
 }   
 
-function createExerciseInfoContent(cardInfo) {
-    var exerciseInfoContent = document.createElement("div");
-    exerciseInfoContent.id = "exercise-info-content";
-    
-    // 운동 상세 정보 페이지 헤더 만들기
-    var exerciseInfoHeader = createExerciseInfoHeader(cardInfo);
-    exerciseInfoContent.appendChild(exerciseInfoHeader);
 
-    var exerciseCategoryClassification = createExerciseCategoryClassification(cardInfo);
-    exerciseInfoContent.appendChild(exerciseCategoryClassification);
 
-    // 운동 영상 프레임 만들기
-    var exerciseVideo = createExerciseVideo(cardInfo.youtubeLink);
-    exerciseInfoContent.appendChild(exerciseVideo);
-    exerciseInfoContainer.appendChild(exerciseInfoContent);
 
-    // 운동 프로필 만들기
-    var exerciseProfile = createExerciseProfile(cardInfo.exerciseInfo);
-    exerciseInfoContent.appendChild(exerciseProfile);   
-
-    // 운동 소개 만들기
-    var exerciseIntroduction = createExerciseIntroduction(cardInfo.exerciseIntroduction);
-    exerciseInfoContent.appendChild(exerciseIntroduction);
-
-    // 운동 순서 만들기
-    var exerciseProcedure = createExerciseProcedure(cardInfo.exerciseProcedure);
-    exerciseInfoContent.appendChild(exerciseProcedure);     
-
-    // 운동 팁 만들기
-    var exerciseTips = createExerciseTips(cardInfo.exerciseTips);
-    exerciseInfoContent.appendChild(exerciseTips);
-    
-    exerciseInfoContainer.appendChild(exerciseInfoContent);
-}
-
-function createExerciseInfoHeader(cardInfo) { // 운동 상세 정보 페이지 헤더 만드는 함수
-    var exerciseInfoHeader = document.createElement("div");
-    exerciseInfoHeader.id = "exercise-info-header";
-    // 뒤로 가기 버튼 만들기
-    var backBtn = createBackBtn(); 
-    exerciseInfoHeader.appendChild(backBtn);
-
-    var exerciseName = document.createElement("h1");
-    exerciseName.textContent = cardInfo.exerciseName;
-    exerciseInfoHeader.appendChild(exerciseName);
-
-    return exerciseInfoHeader;
-}
-
-function createBackBtn() { // 뒤로 가기 버튼 만들기
-    var backBtn = document.createElement("span"); 
-    backBtn.classList.add("material-symbols-outlined");
-    backBtn.classList.add("back-btn");
-    backBtn.textContent = "arrow_back";
-    backBtn.addEventListener('click', () => {
-        exerciseListContainer.style.display = 'block';
-    });
-    return backBtn;
-}
 
 function createExerciseCategoryClassification(cardInfo) { // 카테고리 정보 만드는 함수
     var exerciseCategoryClassification = document.createElement("div");
