@@ -1,3 +1,6 @@
+import { CardInfo } from "./dynamicHtml/shared/cardInfo.js";
+import { ExerciseInfo } from "./dynamicHtml/shared/exerciseInfo.js";
+
 async function crawling(url) {
   try {
     console.log("fetch 시도");
@@ -27,16 +30,23 @@ async function href(doc) {
     const content = doc.querySelector(".mainpage-category-list");
     const a = content.querySelectorAll("a");
 
+    var array = [];
+    var i = 0;
+    while (i < a.length) {
+      array.push(a[i]);
+      i += 2;
+    }
+
     //전체 크롤링
 
-    // a.forEach(element => {
+    // array.forEach(element => {
     //   muscleGroup.push(element.getAttribute("href")); 
     // });
     // return muscleGroup;
 
     //테스트용 크롤링
 
-    muscleGroup.push(a[2].getAttribute("href"));
+    muscleGroup.push(array[0].getAttribute("href"));
     console.log("muclsGroup:", muscleGroup);
     return muscleGroup;
 
@@ -66,6 +76,20 @@ async function allExercise(muscleGroup){
         console.log(a.getAttribute("href"));
         exerciseName.name = a.textContent.trim();
         exerciseName.link = a.getAttribute("href");
+
+        var thumbnailLink = []
+        var thumbnail = content1.querySelectorAll("img");
+
+        thumbnail.forEach((thumb)=>{
+          var thumb1 = thumb.getAttribute("src");
+          if (thumb1 == null){
+            thumb1 = thumb.getAttribute("data-src");
+          }
+          thumbnailLink.push(thumb1);
+        })
+
+        exerciseName.thumbnail = thumbnailLink[i];
+        
         exerciseArray.push(exerciseName);
       })
 
@@ -160,7 +184,9 @@ async function getExerciseInfo(exercises) {
       try {
         var instruction = exerciseDoc.querySelector(".field-type-text-with-summary");
         instruction = instruction.textContent;
-        instruction = instruction.replaceAll("\n", ' ');
+        instruction = instruction.replaceAll("\n", '');
+        instruction = instruction.replaceAll(".", ' ');
+        instruction = instruction.replaceAll("  ", ' ');
         if (instruction.split("Tips:")[1] != null){
           tip = instruction.split("Tips:")[1];
           instruction = instruction.split("Tips:")[0];
@@ -177,31 +203,28 @@ async function getExerciseInfo(exercises) {
       } catch {
 
       }
-
-      try {
-        tip = exerciseDoc.querySelector(".field-name-field-exercise-tips");
-        tip = tip.textContent;
-        tip = tip.replaceAll("\n", ' ');
-        console.log(tip);
-      } catch {
-        
+      
+      if (tip == null) {
+        try {
+          tip = exerciseDoc.querySelector(".field-name-field-exercise-tips");
+          tip = tip.textContent;
+          tip = tip.replaceAll("\n", '');
+          tip = tip.replaceAll(".", ' ');
+          console.log(tip);
+        } catch {
+          
+        }
       }
 
-      var exerciseInfo = new Object();
-
-      exerciseInfo.name = exercise.name;
-      exerciseInfo.link = exercise.link;
-      exerciseInfo.videoLink = videoLink;
-      exerciseInfo.targetMuscle = targetMuscle;
-      exerciseInfo.exerciseType = exerciseType;
-      exerciseInfo.equipment = equipment;
-      exerciseInfo.mechanism = mechanism;
-      exerciseInfo.forceType = forceType;
-      exerciseInfo.level = level;
-      exerciseInfo.second = second;
-      exerciseInfo.overview = overview;
-      exerciseInfo.instruction = instruction;
-      exerciseInfo.tip = tip;
+      var exerciseInfo = new CardInfo(
+        exercise.name,
+        new ExerciseInfo(targetMuscle, exerciseType, equipment, mechanism, forceType, level, second),
+        overview,
+        instruction,
+        tip,
+        exercise.thumbnail,
+        videoLink
+      );
 
       return exerciseInfo;
 
@@ -220,26 +243,13 @@ async function getExerciseInfo(exercises) {
   }
 }
 
-// async function convertToCSV(objArray) {
-//   const array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
-//   let csv = '';
-
-//   // 헤더 생성
-//   csv += Object.keys(array[0]).join(',') + '\n';
-
-//   // 데이터 생성
-//   array.forEach(item => {
-//       csv += Object.values(item).join(',') + '\n';
-//   });
-
-//   return csv;
-// }
-
-(async () => {
+export async function getCrawlingData() {
 
   const source = await crawling("http://localhost:5001/getHTML?url=https://www.muscleandstrength.com/exercises");
   const href1 = await href(source);
   const exercises = await allExercise(href1);
   const exerciseInfo = await getExerciseInfo(exercises);
   console.log(exerciseInfo);
-})();
+}
+
+getCrawlingData();
