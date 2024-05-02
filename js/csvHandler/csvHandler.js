@@ -24,7 +24,7 @@ function writeCsv(cardInfos) {
   cardInfos.forEach(cardInfo => {
     const row = [
       cardInfo.exerciseName,
-      JSON.stringify(cardInfo.exerciseInfo),
+      // JSON.stringify(cardInfo.exerciseInfo),
       cardInfo.exerciseIntroduction,
       cardInfo.exerciseProcedure,
       cardInfo.exerciseTips, 
