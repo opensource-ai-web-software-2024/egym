@@ -39,16 +39,16 @@ async function href(doc) {
 
     //전체 크롤링
 
-    // array.forEach(element => {
-    //   muscleGroup.push(element.getAttribute("href")); 
-    // });
-    // return muscleGroup;
+    array.forEach(element => {
+      muscleGroup.push(element.getAttribute("href")); 
+    });
+    return muscleGroup;
 
     //테스트용 크롤링
 
-    muscleGroup.push(array[0].getAttribute("href"));
-    console.log("muclsGroup:", muscleGroup);
-    return muscleGroup;
+    // muscleGroup.push(array[0].getAttribute("href"));
+    // console.log("muclsGroup:", muscleGroup);
+    // return muscleGroup;
 
   } catch(error) {
     console.log("error:", error);
@@ -250,6 +250,8 @@ export async function getCrawlingData() {
   const exercises = await allExercise(href1);
   const exerciseInfo = await getExerciseInfo(exercises);
   console.log(exerciseInfo);
+
+  return exerciseInfo;
 }
 
 getCrawlingData();

@@ -18,6 +18,8 @@ function writeCsv(cardInfos) {
     ]
   );
 
+  console.log("csv: ", cardInfos);
+
   // 카드 정보를 CSV 데이터에 추가
   cardInfos.forEach(cardInfo => {
     const row = [
@@ -25,7 +27,7 @@ function writeCsv(cardInfos) {
       JSON.stringify(cardInfo.exerciseInfo),
       cardInfo.exerciseIntroduction,
       cardInfo.exerciseProcedure,
-      cardInfo.exerciseTip,
+      cardInfo.exerciseTips, 
       cardInfo.thumbnailLink,
       cardInfo.youtubeLink,
     ];
@@ -53,4 +55,4 @@ function writeCsv(cardInfos) {
   }
 }
 
-writeCsv(getCrawlingData());
+writeCsv(await getCrawlingData());
