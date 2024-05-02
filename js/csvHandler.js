@@ -1,3 +1,5 @@
+import {getCrawlingData} from "./crawl.js";
+
 function writeCsv(cardInfos) {
   const csvFilePath = "exercise.csv";
   // CSV 데이터 준비
@@ -20,7 +22,7 @@ function writeCsv(cardInfos) {
   cardInfos.forEach(cardInfo => {
     const row = [
       cardInfo.exerciseName,
-      cardInfo.exerciseInfo,
+      JSON.stringify(cardInfo.exerciseInfo),
       cardInfo.exerciseIntroduction,
       cardInfo.exerciseProcedure,
       cardInfo.exerciseTip,
@@ -50,3 +52,5 @@ function writeCsv(cardInfos) {
     }
   }
 }
+
+writeCsv(getCrawlingData());
