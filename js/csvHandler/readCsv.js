@@ -10,4 +10,4 @@ export async function readCsv(fileName="user_routine.csv") {
     }
 }
 
-readCsv();
+readCsv("exercise.csv");
