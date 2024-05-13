@@ -25,6 +25,8 @@ document.addEventListener("DOMContentLoaded", function () {
 	routineListSelector.addEventListener("click", toggleRoutine);
 	// 루틴 삭제
 	routineListSelector.addEventListener("click", deleteRoutine);
+	// 루틴 수정
+	routineListSelector.addEventListener("click", modifyRoutine);
 });
 
 function createNewRoutine(todayDate) {
@@ -127,5 +129,11 @@ function deleteRoutine(event) {
 		setTimeout(function () {
 			routineDiv.remove(); // 일정 시간 후 요소 삭제
 		}, 300); // 0.3초 후에 삭제
+	}
+}
+
+function modifyRoutine(event) {
+	if (event.target.classList.contains("edit-button") || event.target.closest(".edit-button")) {
+		window.open("edit_routine.html", "Edit Routine", "width=400,height=600");
 	}
 }

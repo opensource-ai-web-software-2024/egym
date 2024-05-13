@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Routine</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/edit_routine.css">
+</head>
+
+<body>
+    <div id="app">
+        <div id="header"></div>
+        <div id="container">
+            <h1>운동 수정하기</h1>
+            <form id="editForm">
+                <label for="exercise">운동 선택:</label>
+                <select id="exercise" name="exercise">
+                    <!-- 동적 생성 -->
+                </select>
+                <br><br>
+                <input type="submit" value="저장하기">
+            </form>
+        </div>
+        <div class="exercise-details" id="exerciseDetails"></div>
+
+    </div>
+    <script src="../js/dynamicHtml/component/modifyRoutine.js"></script>
+    <script src="../js/dynamicHtml/component/header.js"></script>
+
+</body>
+
+</html>

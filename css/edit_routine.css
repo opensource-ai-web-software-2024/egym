@@ -1,0 +1,139 @@
+@font-face {
+	font-family: "Material Icons";
+	font-style: normal;
+	font-weight: 400;
+	src: url(https://example.com/MaterialIcons-Regular.eot); /* For IE6-8 */
+	src: local("Material Icons"), local("MaterialIcons-Regular"), url(https://example.com/MaterialIcons-Regular.woff2) format("woff2"), url(https://example.com/MaterialIcons-Regular.woff) format("woff"),
+		url(https://example.com/MaterialIcons-Regular.ttf) format("truetype");
+}
+
+.material-icons {
+	font-family: "Material Icons";
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px; /* Preferred icon size */
+	display: inline-block;
+	line-height: 1;
+	text-transform: none;
+	letter-spacing: normal;
+	word-wrap: normal;
+	white-space: nowrap;
+	direction: ltr;
+
+	/* Support for all WebKit browsers. */
+	-webkit-font-smoothing: antialiased;
+	/* Support for Safari and Chrome. */
+	text-rendering: optimizeLegibility;
+
+	/* Support for Firefox. */
+	-moz-osx-font-smoothing: grayscale;
+
+	/* Support for IE. */
+	font-feature-settings: "liga";
+}
+
+body {
+	background-color: #1a1a1a;
+}
+
+div#container {
+	width: 100%;
+	height: 100%;
+}
+
+div #container h1 {
+	margin: 20px;
+}
+
+/* 폼 css */
+#container form {
+	background: #323232;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 70%;
+	margin: 0 auto;
+}
+
+#container select {
+	width: 100%;
+	padding: 10px;
+	margin-top: 5px;
+	margin-bottom: 20px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box; /* 사이징 */
+	appearance: none; /* 기존 화살표 제거 */
+	background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* 화살표 */
+	background-repeat: no-repeat;
+	background-position: right 10px center; /* 화살표 위치 */
+	background-color: white;
+}
+
+/* submit 버튼 */
+#container input[type="submit"] {
+	width: 100%;
+	padding: 10px;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+#container input[type="submit"]:hover {
+	background-color: #0056b3;
+}
+
+/* 운동 세부정보 */
+.exercise-details {
+	margin-top: 20px;
+	background: #4a4a4a;
+	padding: 20px;
+	border-radius: 8px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	width: 70%;
+	margin: 0 auto;
+	display: none;
+	word-wrap: break-word; /* 줄바꿈 */
+}
+
+/* 테이블 시작 */
+table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 20px 0;
+	box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+	font-size: 16px;
+	background-color: #f8f8f8;
+}
+
+table th,
+table td {
+	width: 50%; /* 반씩만 써라 */
+	padding: 12px 15px; /* 패딩 조정 */
+	border: 1px solid #ddd;
+	text-align: left;
+}
+
+table th {
+	background-color: #343434;
+	color: #ffffff;
+	font-weight: bold;
+}
+
+table td {
+	color: #343434;
+}
+
+table tr:nth-child(odd) {
+	background-color: #ffffff;
+}
+
+table tr:nth-child(even) {
+	background-color: #eeeeee;
+}
+
+table tr:hover {
+	background-color: #cccccc;
+}
