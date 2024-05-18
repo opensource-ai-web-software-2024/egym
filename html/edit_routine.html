@@ -16,7 +16,7 @@
         <div id="header"></div>
         <div id="container">
             <h1>운동 수정하기</h1>
-            <form id="editForm">
+            <form id="edit-form">
                 <label for="exercise">운동 선택:</label>
                 <select id="exercise" name="exercise">
                     <!-- 동적 생성 -->
@@ -25,10 +25,11 @@
                 <input type="submit" value="저장하기">
             </form>
         </div>
-        <div class="exercise-details" id="exerciseDetails"></div>
+        <div class="exercise-details" id="exercise-details"></div>
 
     </div>
-    <script src="../js/dynamicHtml/component/modifyRoutine.js"></script>
+    <script src="../js/dynamicHtml/component/modifyRoutine.js" type="module"></script>
+    <script src="../js/backup.js" type="module"></script>
     <script src="../js/dynamicHtml/component/header.js"></script>
 
 </body>
