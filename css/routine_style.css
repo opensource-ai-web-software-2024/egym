@@ -111,6 +111,21 @@ div#routine-list {
 	align-items: flex-end;
 }
 
+/* 운동 목록 스타일 */
+.exercise-list {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.exercise-item {
+	padding: 10px;
+	border: 1px solid #444;
+	margin-bottom: 5px;
+	border-radius: 5px;
+	background-color: #2a2a2a;
+	color: #fff;
+}
+
 /* 루틴 삭제 이펙트 */
 .fade-out {
 	opacity: 0;

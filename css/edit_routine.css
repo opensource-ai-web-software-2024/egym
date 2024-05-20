@@ -98,6 +98,12 @@ div #container h1 {
 	word-wrap: break-word; /* 줄바꿈 */
 }
 
+.exercise-set-counts {
+	display: flex;
+	justify-content: space-between;
+	margin: 0 10% 20px;
+}
+
 /* 테이블 시작 */
 table {
 	width: 100%;
