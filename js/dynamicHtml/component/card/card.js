@@ -1,11 +1,12 @@
 import { cardInfosExample } from '../../shared/cardInfosExample.js';
 import { createExerciseInfoContainer } from '../exerciseInfoContainer/exerciseInfoContainer.js'
 
-export function filteringHandler(query) {
+export function filteringHandler(query, selectedTags) {
 	searchResult = cardInfos;
 	console.log(query);
 	if (query.trim() !== "") {
 		searchResult = searchResult.filter((exerciseInfo) => {
+			
 			return query === exerciseInfo.exerciseName;
 		});
 	}
@@ -37,7 +38,7 @@ function makingCards() {
 		cardDiv.classList.add("card-div");
 		card.appendChild(cardDiv);
 
-		// 카드 이미지 추가
+		// 카드 이미지 추가	
 		var cardImg = document.createElement("div");
 		cardImg.classList.add("card-img");
 		cardDiv.appendChild(cardImg);

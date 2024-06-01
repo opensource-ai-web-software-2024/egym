@@ -1,82 +1,46 @@
 import { CardInfo } from '../shared/cardInfo.js';
 import { ExerciseInfo } from '../shared/exerciseInfo.js';
+import { readCsv } from '../../csvHandler/readCsv.js';
+
+
 
 export var cardInfosExample = [
-	new CardInfo(
-		"라잉 플로어 레그 레이즈",
-		new ExerciseInfo("복근", "힘", "맨몸 운동", "고립 운동", "장력", "초보자", "없음"),
-		"라잉 플로어 레그 레이즈는 복부 크런치의 변형이며, 복부 근육을 고립시키는 데 사용되는 운동입니다.\n기본적으로 굴곡 기반의 운동으로, 움직이는 동안 하부 복부 근육을 지속적으로 긴장시킵니다",
-		[
-			"편안한 자세로 등을 바닥에 눕습니다. 다리는 직진하고 손은 허리 아래에 두어 지지합니다.",
-			"다리를 직진한 상태로 유지하고 복부를 수축시키고 숨을 내쉬면서 이를 이마 쪽으로 들어올립니다.",
-			"복부가 완전히 수축되고 다리가 약간 평행한 상태가 되면 천천히 다리를 시작 위치로 내려놓습니다.",
-			"할당된 반복 횟수를 완료합니다.",
-		],
-		[
-			"촛불을 끄는 듯이 강하게 숨을 내쉬고, 마음과 근육 사이의 연결을 개선하기 위해 수축을 1초 동안 유지합니다.",
-			"이 운동 중에 허리 아랫부분에 불편함이 느껴진다면, 더 많은 안티 익스텐션 및 안티 로테이션을 기반으로 하는 동작을 선택하세요.",
-			"머리 뒤에 손을 두는 것을 피하세요. 이렇게 하면 목에 과도한 압력이 가해질 수 있습니다.",
-		],
-		"https://i.ytimg.com/vi_webp/r24ntO4IvKc/maxresdefault.webp",
-		"https://youtu.be/r24ntO4IvKc"
-	),
-	new CardInfo(
-		"푸쉬 업",
-		new ExerciseInfo("종아리", "힘", "맨몸 운동", "고립 운동", "장력", "초보자", "없음"),
-		"라잉 플로어 레그 레이즈는 복부 크런치의 변형이며, 복부 근육을 고립시키는 데 사용되는 운동입니다.\n기본적으로 굴곡 기반의 운동으로, 움직이는 동안 하부 복부 근육을 지속적으로 긴장시킵니다",
-		[
-			"편안한 자세로 등을 바닥에 눕습니다. 다리는 직진하고 손은 허리 아래에 두어 지지합니다.",
-			"다리를 직진한 상태로 유지하고 복부를 수축시키고 숨을 내쉬면서 이를 이마 쪽으로 들어올립니다.",
-			"복부가 완전히 수축되고 다리가 약간 평행한 상태가 되면 천천히 다리를 시작 위치로 내려놓습니다.",
-			"할당된 반복 횟수를 완료합니다.",
-		],
-		[
-			"촛불을 끄는 듯이 강하게 숨을 내쉬고, 마음과 근육 사이의 연결을 개선하기 위해 수축을 1초 동안 유지합니다.",
-			"이 운동 중에 허리 아랫부분에 불편함이 느껴진다면, 더 많은 안티 익스텐션 및 안티 로테이션을 기반으로 하는 동작을 선택하세요.",
-			"머리 뒤에 손을 두는 것을 피하세요. 이렇게 하면 목에 과도한 압력이 가해질 수 있습니다.",
-		],
-		"https://i.ytimg.com/vi_webp/r24ntO4IvKc/maxresdefault.webp",
-		"https://youtu.be/r24ntO4IvKc"
-	),
-	new CardInfo(
-		"레그 익스텐션",
-		new ExerciseInfo("어깨", "힘", "맨몸 운동", "고립 운동", "장력", "초보자", "없음"),
-		"라잉 플로어 레그 레이즈는 복부 크런치의 변형이며, 복부 근육을 고립시키는 데 사용되는 운동입니다.\n기본적으로 굴곡 기반의 운동으로, 움직이는 동안 하부 복부 근육을 지속적으로 긴장시킵니다",
-		[
-			"편안한 자세로 등을 바닥에 눕습니다. 다리는 직진하고 손은 허리 아래에 두어 지지합니다.",
-			"다리를 직진한 상태로 유지하고 복부를 수축시키고 숨을 내쉬면서 이를 이마 쪽으로 들어올립니다.",
-			"복부가 완전히 수축되고 다리가 약간 평행한 상태가 되면 천천히 다리를 시작 위치로 내려놓습니다.",
-			"할당된 반복 횟수를 완료합니다.",
-		],
-		[
-			"촛불을 끄는 듯이 강하게 숨을 내쉬고, 마음과 근육 사이의 연결을 개선하기 위해 수축을 1초 동안 유지합니다.",
-			"이 운동 중에 허리 아랫부분에 불편함이 느껴진다면, 더 많은 안티 익스텐션 및 안티 로테이션을 기반으로 하는 동작을 선택하세요.",
-			"머리 뒤에 손을 두는 것을 피하세요. 이렇게 하면 목에 과도한 압력이 가해질 수 있습니다.",
-		],
-		"https://i.ytimg.com/vi_webp/r24ntO4IvKc/maxresdefault.webp",
-		"https://youtu.be/r24ntO4IvKc"
-	),
+	
 ];
 
-for (let i = 0; i < 1000; i++) {
-	cardInfosExample.push(
-		new CardInfo(
-			"복근",
-			new ExerciseInfo("복근", "힘", "맨몸 운동", "고립 운동", "장력", "초보자", "없음"),
-			"라잉 플로어 레그 레이즈는 복부 크런치의 변형이며, 복부 근육을 고립시키는 데 사용되는 운동입니다.\n기본적으로 굴곡 기반의 운동으로, 움직이는 동안 하부 복부 근육을 지속적으로 긴장시킵니다",
-			[
-				"편안한 자세로 등을 바닥에 눕습니다. 다리는 직진하고 손은 허리 아래에 두어 지지합니다.",
-				"다리를 직진한 상태로 유지하고 복부를 수축시키고 숨을 내쉬면서 이를 이마 쪽으로 들어올립니다.",
-				"복부가 완전히 수축되고 다리가 약간 평행한 상태가 되면 천천히 다리를 시작 위치로 내려놓습니다.",
-				"할당된 반복 횟수를 완료합니다.",
-			],
-			[
-				"촛불을 끄는 듯이 강하게 숨을 내쉬고, 마음과 근육 사이의 연결을 개선하기 위해 수축을 1초 동안 유지합니다.",
-				"이 운동 중에 허리 아랫부분에 불편함이 느껴진다면, 더 많은 안티 익스텐션 및 안티 로테이션을 기반으로 하는 동작을 선택하세요.",
-				"머리 뒤에 손을 두는 것을 피하세요. 이렇게 하면 목에 과도한 압력이 가해질 수 있습니다.",
-			],
-			"https://i.ytimg.com/vi_webp/r24ntO4IvKc/maxresdefault.webp",
-			"https://youtu.be/r24ntO4IvKc"
-		)
-	);
+let exerciseCsv;
+async function readExerciseCsv() {
+	try {
+		exerciseCsv = await readCsv();
+		console.log(exerciseCsv);
+	}
+	catch (error) {
+		console.log(error);
+	}
+}
+
+readExerciseCsv();
+
+if (exerciseCsv.length != 0) {
+	for (let i = 0; i < exerciseCsv.length; i++) {
+		var exerciseName = exerciseCsv[i][0];
+		var exerciseInfo = JSON.parse(exerciseCsv[i][1]);
+		var exerciseIntroduction = exerciseCsv[i][2];
+		var exerciseProcedure = exerciseCsv[i][3];
+		var exerciseTips = exerciseCsv[i][4];
+		var thumnailLink = exerciseCsv[i][5];
+		var youtubeLink = exerciseCsv[i][6];
+		JSON.parse(exerciseCsv[i][1]);
+		cardInfosExample.push(
+			new CardInfo(
+				exerciseCsv[i][0],
+				
+				exerciseCsv[i][2],
+				exerciseCsv[i][3],
+				exerciseCsv[i][4],
+				exerciseCsv[i][5],
+				exerciseCsv[i][6],
+			)
+		);
+	}
 }

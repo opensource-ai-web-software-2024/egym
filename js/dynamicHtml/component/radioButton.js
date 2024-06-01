@@ -79,6 +79,7 @@ const categoryInfos = [
 	},
 ];
 
+const selectedTags = [];
 function toggleHandler(event) {
 	const radioLabels = document.querySelectorAll(`input[name='${event.target.name}']`);
 	radioLabels.forEach((label) => {

@@ -3,7 +3,7 @@ var header = document.getElementById("header");
 
 // 로고
 var logo = document.createElement("h1");
-logo.id = "logo";
+logo.classList.add("logo");
 logo.textContent = "Egym";
 header.appendChild(logo);
 
@@ -17,6 +17,10 @@ var navItemInfos = [
     {
         href: "index.html",
         textContent: "홈",
+    },
+    {
+        href: "introduction.html",
+        textContent: "소개",
     },
     {
         href: "exercise.html",

@@ -1,0 +1,268 @@
+#header {
+    background-color: transparent;
+    border-bottom: transparent;
+}
+
+div {
+    text-align: center;
+}
+
+input[type="button"]:hover {
+    cursor: pointer;
+}
+/* 메인 배너 */
+div#content1 {
+    width: 100%;
+    height: 400px;
+
+    overflow: hidden;
+    position: relative;
+    
+    background-image: url('../img/egym_main_banner.png');
+    background-size: cover;
+    background-position: center;
+
+    padding-top: 80px;
+}
+
+/* 메인 배너 이미지 */
+div#content1 > img {
+    width: 100%;    
+}
+
+/* 메인 배너 로고 */
+div#content1 > h1 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 90px;
+    -webkit-text-stroke: 1px #3ed4b3; 
+    color: transparent;
+}
+
+/* 메인 배너 소개글 */
+div#content1 > p {
+    position: absolute;
+    top: calc(50% + 96px);
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 24px;
+}
+
+div#content2 {
+    padding: 60px 0 60px 0;
+    background-image: url('../img/egym_background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+div#content2 > h2 {
+    margin-bottom: 60px; 
+}
+
+div#kettle-bells {
+    margin-bottom: 60px;
+}
+
+div.kettle-bell {
+    width: 240px;
+    height: 240px;
+    
+    margin: 0 24px;
+    border: 1px solid white;
+    border-radius: 50%;
+
+    display: inline-block;  
+}
+
+div.kettle-bell > p {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    text-align: center;
+}
+
+div.content3 {
+    background-color: #1a1a1a;
+    display: flex;
+    margin-bottom: 60px;
+}
+
+div.content3 > img {
+    width: 240px;
+    height: 360px;
+    object-fit: cover;
+    margin-left: 48px;
+}
+
+div.content3 > div.inner-content {
+    width: calc(100% - 240px - 48px - 24px);
+    margin: 0 48px 0 24px;
+    background-color: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* 내용이 중앙에 배치되도록 */
+}
+
+div.inner-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+div.inner-text > h1, p {
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+div.inner-header > input[type='button'] {
+    width: 80px;
+    padding: 12px;
+    border-radius: 24px;
+    margin-bottom: 24px;
+}
+
+div.slides {
+    display: flex;
+    gap: 24px;
+}
+/* 이미지 슬라이드 */
+div.slide {
+    width: 240px;
+
+}
+
+div.slide > img {
+    width: 240px;
+    height: 160px;
+    margin-bottom: 24px;
+    object-fit: cover;
+    border: 1px solid white;
+}
+
+div.slide > p {
+    line-height: 1.5;
+}
+
+/* 응원 문구 */
+div#content4 {
+    background-color: #0DD6CB;
+    color: black;
+    padding: 24px 0 24px 0;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+}
+
+div#content4 > h1 {
+    font-family: 'InkLipquid';
+    font-size: 32px;
+}
+
+div#content4 > img {
+    width: 400px;    
+    margin: 24px 0 24px 0;
+}
+
+div#content4 > input[type='button'] {
+    padding: 16px 24px 16px 24px;  
+    
+    border: none;
+    border-radius: 48px;
+    background-color: black;
+    
+    color: white;
+    font-size: 24px;
+}
+
+/* 푸터 */
+div#footer {
+    padding: 48px 48px 60px 48px;
+    padding-bottom: 60px; 
+}
+
+div#footer > div {
+    border-bottom: 1px solid white;
+    padding: 24px 0 24px 0;
+}
+div#footer h2, h3 {
+    text-align: left;
+    margin-bottom: 12px;
+}
+
+div.member-info {
+    display: flex;
+    gap: 12px;
+}
+
+div.member-info:before {
+    content: "+";    
+}
+
+div.student-info {
+    display: flex;
+    gap: 12px;
+}
+
+div.student-info:before {
+    content: "-";
+}
+
+div.member-info > p.name {
+    letter-spacing: 4px;
+}
+
+/* 아이콘 */
+div.icon-div {
+    width: 32px;
+    height: 32px;
+    position: relative;
+    background-color: white;
+    
+}
+
+img.icon-img {
+    height: 24px;
+    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* 개발 언어, 개발 도구, 개발 도움 */
+div#lang-list {
+    display: flex;
+    gap: 12px;
+}
+
+div#tool-list, div#helper-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px; 
+}
+
+div.lang, div.tool, div.helper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+div.lang > p, div.tool > p, div.helper > p {
+    margin-bottom: 0;
+}
+
+div.tool > p.link:before, div.helper > p.link:before {
+    content: "|";
+    margin-right: 8px;
+}
+
+div#dev-tool {
+    border-bottom: transparent !important;    
+}
