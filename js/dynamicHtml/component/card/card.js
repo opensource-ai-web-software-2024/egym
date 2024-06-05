@@ -17,8 +17,6 @@ export function filteringHandler(query, selectedTags) {
 var cardInfos = cardInfosExample;
 var searchResult = cardInfos;
 
-console.log("테스트 123", cardInfos)
-
 function makingCards() {
 	// div.card 검색
 	// 유사 배열 객체

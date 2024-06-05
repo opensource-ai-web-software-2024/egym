@@ -6,6 +6,7 @@ div#exercise-list-container {
 /* 운동 정보 컨테이너 */
 div#exercise-info-container {
 	height: 100%;
+	padding-top: 80px;
 	padding-bottom: 60px;
 }
 
