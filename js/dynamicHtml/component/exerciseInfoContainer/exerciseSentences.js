@@ -7,11 +7,26 @@ function createDivForSentence(id, title, sentence) {
     div.appendChild(headline);
 
     var paragraph = document.createElement("p");
-    if (sentence == "") {
-        paragraph.textContent = "소개 내용이 없습니다";
-    } else {
-        paragraph.textContent = sentence;
+
+    let newText = "";
+
+    for (let i = 0; i < sentence.length; i++) {
+        if (sentence[i] === '.') {
+            newText += sentence[i] + '<br>';
+        } else {
+            newText += sentence[i];
+        }
     }
+
+    if (sentence == "") {
+        newText = "소개 내용이 없습니다";
+    }
+    
+    console.log("newtext ",newText);
+
+    var paragraph = document.createElement("p");
+    paragraph.innerHTML = newText;
+    console.log("paragraph ", paragraph.textContent);
     div.appendChild(paragraph);
 
     return div;
@@ -39,7 +54,7 @@ function createDivForSentences(id, title, sentences, listStyle) {
     let newText = "";
 
     for (let i = 0; i < sentences.length; i++) {
-        if (sentences[i] === ',' || sentences[i] === '.') {
+        if (sentences[i] === '.') {
             newText += sentences[i] + '<br>';
         } else {
             newText += sentences[i];

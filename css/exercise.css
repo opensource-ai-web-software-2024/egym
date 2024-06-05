@@ -60,6 +60,15 @@ div#exercise-video {
 iframe#exercise-video-frame {
 	width: calc(100% - 480px);
 	height: 480px;
+	display: block;
+	margin: auto;
+}
+
+img#exercise-video-frame {
+	width: 800px;
+	height: 480px;
+	display: block;
+	margin: auto;
 }
 
 /* 운동 프로필 */
