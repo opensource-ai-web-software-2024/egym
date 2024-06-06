@@ -1,4 +1,4 @@
-import { getNowDateString } from "../shared/nowDate.js";
+import { getUniqueNowDateString } from "../shared/nowDate.js";
 
 const routineListSelector = document.getElementById("routine-list");
 
@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 	// 'create' 버튼 클릭 이벤트 리스너
 	createButton.addEventListener("click", function () {
-		const todayDate = getNowDateString(); // 루틴 제목 자동 생성을 위한 현재 날짜 저장
+		const todayDate = getUniqueNowDateString(); // 루틴 제목 자동 생성을 위한 현재 날짜 저장
 
 		// 새로운 루틴 박스 생성
 		const routineDiv = createNewRoutine(todayDate);
