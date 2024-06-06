@@ -20,7 +20,11 @@ export function filteringHandler(category, value) {
 			} else if (category === "상세 부위") {
 				return exerciseInfo.exerciseInfo.targetMuscleGroup === value;
 			} else if (category === "운동 구분") {
-				return exerciseInfo.exerciseInfo.mechanics === value;
+				if (value === "맨몸 운동") {
+					return exerciseInfo.exerciseInfo.equipmentRequired === "체중";
+				} else if (value === "기구 운동") {
+					return exerciseInfo.exerciseInfo.equipmentRequired !== "체중";
+				}
 			} else if (category === "난이도") {
 				return exerciseInfo.exerciseInfo.experienceLevel === value;
 			}
