@@ -10,6 +10,8 @@ const keyMapping = {
 };
 
 export function createExerciseProfile(exerciseInfo) {
+	console.log("운동 정보", exerciseInfo);
+	
 	var exerciseProfile = document.createElement("div");
 	exerciseProfile.id = "exercise-profile";
 
