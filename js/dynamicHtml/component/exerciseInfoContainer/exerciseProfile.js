@@ -11,7 +11,7 @@ const keyMapping = {
 
 export function createExerciseProfile(exerciseInfo) {
 	console.log("운동 정보", exerciseInfo);
-	
+
 	var exerciseProfile = document.createElement("div");
 	exerciseProfile.id = "exercise-profile";
 
@@ -26,8 +26,8 @@ export function createExerciseProfile(exerciseInfo) {
 		var tr = document.createElement("tr");
 
 		var keyTd = document.createElement("td");
+
 		keyTd.textContent = keyMapping[key];
-		console.log(keyMapping[key]);
 		tr.appendChild(keyTd);
 
 		var valueTd = document.createElement("td");
