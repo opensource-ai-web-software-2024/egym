@@ -21,8 +21,6 @@ function createDivForSentence(id, title, sentence) {
     if (sentence == "") {
         newText = "소개 내용이 없습니다";
     }
-    
-    console.log("newtext ",newText);
 
     var paragraph = document.createElement("p");
     paragraph.innerHTML = newText;
@@ -40,33 +38,29 @@ function createDivForSentences(id, title, sentences, listStyle) {
     headline.textContent = title;
     div.appendChild(headline);
 
-    console.log("문장: ", sentences)
-    
-    // for (let i = 0; i < sentences.length; i++) {
-    //     var paragraph = document.createElement("p");
-    //     if (listStyle === "num")
-    //         paragraph.textContent = (i + 1) + ". " + sentences[i];
-    //     else 
-    //         paragraph.textContent = sentences[i];
-    //     div.appendChild(paragraph);
-    // }
+    let newText = [];
 
-    let newText = "";
+    var s1 = "";    
 
-    for (let i = 0; i < sentences.length; i++) {
+    for (let i = 0; i< sentences.length; i++) {
         if (sentences[i] === '.') {
-            newText += sentences[i] + '<br>';
+            s1 += sentences[i];
+            newText.push(s1);
+            s1 = "";
         } else {
-            newText += sentences[i];
+            s1 += sentences[i];
         }
     }
-    
-    console.log("newtext ",newText);
 
-    var paragraph = document.createElement("p");
-    paragraph.innerHTML = newText;
-    console.log("paragraph ", paragraph.textContent);
-    div.appendChild(paragraph);
+    for (let j=0; j<newText.length; j++){
+        newText[j] = (j + 1) + '. ' + newText[j];
+    }
+
+    for (let i=0; i<newText.length; i++) {
+        var paragraph = document.createElement("p");
+        paragraph.textContent = newText[i];
+        div.appendChild(paragraph);
+    }
 
     return div;
 }
