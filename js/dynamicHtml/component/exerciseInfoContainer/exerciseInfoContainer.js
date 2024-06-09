@@ -10,6 +10,7 @@ var exerciseInfoContainer = document.getElementById("exercise-info-container"); 
 export function createExerciseInfoContainer(cardInfo) {
 	// 운동 상세 정보 페이지 만들기 함수
 	exerciseListContainer.style.display = "none"; // 운동 검색 정보 페이지는 안 보이도록 설정
+	exerciseInfoContainer.style.display = "block"; // 운동 상세 정보 페이지는 보이도록 설정
 
 	var existingContent = document.getElementById("exercise-info-content");
 	if (existingContent) {

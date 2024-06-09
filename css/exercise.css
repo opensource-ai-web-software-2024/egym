@@ -1,7 +1,9 @@
 div#exercise-list-container {
 	padding-top: 80px;
-	padding-bottom: 60px;
+	/* padding-bottom: 60px; */
 }
+
+/* 운동 정보 화면 시작 */
 
 /* 운동 정보 컨테이너 */
 div#exercise-info-container {
@@ -129,9 +131,4 @@ div#exercise-tips > p {
 div#exercise-procedure > p:last-child,
 div#exercise-tips > p:last-child {
 	margin-bottom: 0;
-}
-
-.disabled {
-	color: grey;
-	pointer-events: none;
 }

@@ -3,7 +3,7 @@ import { createExerciseInfoContainer } from "../exerciseInfoContainer/exerciseIn
 
 // musclePart 변수 정의
 const musclePart = {
-	하체: ["대퇴근", "내전근", "종아리", "둔근", "햄스트링", "엉덩이 굴곡근", "장경인대", "허벅지", "족저근막"],
+	하체: ["대퇴근", "내전근", "종아리", "둔근", "햄스트링", "엉덩이 굴곡근", "장경인대", "족저근막"],
 	가슴: ["가슴"],
 	등: ["허리", "등 아래쪽", "등 위쪽"],
 	팔: ["팔뚝", "긴손바닥근", "어깨"],
@@ -11,24 +11,12 @@ const musclePart = {
 };
 
 // 필터링 변경
-export function filteringHandler(category, value) {
+function filteringHandler(value) {
 	searchResult = cardInfos;
 	if (value !== "전체") {
+		// 부위 필터링
 		searchResult = searchResult.filter((exerciseInfo) => {
-			if (category === "부위") {
-				return musclePart[value].includes(exerciseInfo.exerciseInfo.targetMuscleGroup);
-			} else if (category === "상세 부위") {
-				return exerciseInfo.exerciseInfo.targetMuscleGroup === value;
-			} else if (category === "운동 구분") {
-				if (value === "맨몸 운동") {
-					return exerciseInfo.exerciseInfo.equipmentRequired === "체중";
-				} else if (value === "기구 운동") {
-					return exerciseInfo.exerciseInfo.equipmentRequired !== "체중";
-				}
-			} else if (category === "난이도") {
-				return exerciseInfo.exerciseInfo.experienceLevel === value;
-			}
-			return true;
+			return Object.values(musclePart).flat().includes(value) && exerciseInfo.exerciseInfo.targetMuscleGroup === value;
 		});
 	}
 	makingCards();
@@ -113,4 +101,4 @@ function makingCards() {
 }
 
 makingCards();
-window.cardFilteringHandler = filteringHandler;
+window.filteringHandler = filteringHandler;

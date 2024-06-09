@@ -1,3 +1,4 @@
+/* Material Icons 폰트 설정 */
 @font-face {
 	font-family: "Material Icons";
 	font-style: normal;
@@ -32,6 +33,7 @@
 	font-feature-settings: "liga";
 }
 
+/* 기본 설정 */
 body {
 	background-color: #1a1a1a;
 }
@@ -42,34 +44,13 @@ div#container {
 	padding-top: 80px;
 }
 
-div#create-routine {
-	display: flex; /* 가로방향 나열, 줄 바꿈 */
-	flex-wrap: wrap;
-	gap: 10px;
-	padding: 20px 20px;
-}
-
-div#create-routine input {
-	display: none; /* 라디오 버튼 숨기기 */
-}
-
-/* radio 버튼 라벨 예쁘게 작업 */
-div#create-routine label {
-	display: inline-block;
-	margin-right: 10px;
-	border-radius: 30px;
-	padding: 10px 20px;
-	border: 1px solid #979797;
-	max-width: 100px;
-	white-space: nowrap;
-	cursor: pointer;
-}
-
 div#routine-list {
 	margin: 20px;
+	margin-top: 100px;
 	width: calc(100% - 40px);
 }
 
+/* 새 루틴 */
 .new-routine {
 	display: flex; /* 가로방향 나열, 줄 바꿈 */
 	flex-wrap: wrap;
@@ -131,4 +112,52 @@ div#routine-list {
 .fade-out {
 	opacity: 0;
 	transition: opacity 0.3s ease; /* 투명도 변화에 대한 애니메이션 효과 추가 */
+}
+
+.create-routine {
+	position: fixed;
+	left: 0;
+	right: 0;
+}
+
+.btn {
+	border: none;
+	display: block;
+	text-align: center;
+	cursor: pointer;
+	text-transform: uppercase;
+	outline: none;
+	overflow: hidden;
+	position: relative;
+	color: #fff;
+	font-weight: 700;
+	font-size: 18px;
+	background-color: #222;
+	padding: 17px 60px;
+	margin: 20px auto 0px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.btn:after {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 490%;
+	width: 140%;
+	background: #78c7d2;
+	-webkit-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	-webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+	transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+	-webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+	transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.btn span {
+	position: relative;
+	z-index: 1;
 }

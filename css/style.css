@@ -1,4 +1,4 @@
-/* 어그로체 - Light */
+/* 폰트 설정 */
 @font-face {
 	font-family: "SBAggroL";
 	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff") format("woff");
@@ -6,7 +6,6 @@
 	font-style: normal;
 }
 
-/* 어그로체 - Medium */
 @font-face {
 	font-family: "SBAggroM";
 	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff") format("woff");
@@ -14,7 +13,6 @@
 	font-style: normal;
 }
 
-/* 어그로체 - Bold */
 @font-face {
 	font-family: "SBAggroB";
 	src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff") format("woff");
@@ -22,16 +20,16 @@
 	font-style: normal;
 }
 
-/* 잉크륍퀴드체 */
 @font-face {
-    font-family: 'InkLipquid';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
+	font-family: "InkLipquid";
+	src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/InkLipquid.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
 }
 
 /* 기본 설정 */
-html, body {
+html,
+body {
 	padding: 0;
 	margin: 0;
 }
@@ -62,6 +60,7 @@ li {
 	list-style: none;
 	text-decoration: none;
 }
+
 a {
 	text-decoration: none;
 	color: white;
@@ -74,11 +73,9 @@ a {
 	padding: 0 48px;
 	position: fixed;
 	z-index: 1;
-	
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-
 	box-sizing: border-box;
 	background-color: #1a1a1a;
 	border-bottom: 1px solid white;
@@ -93,19 +90,42 @@ ul#nav-bar {
 	display: flex;
 	gap: 16px;
 }
-/* 헤더 끝 */
 
-/* body 시작 */
+/* body */
 div#container {
 	padding: 0 0 60px 0;
 }
 
 /* 세부 검색창 */
 div#detailed-search {
-	height: 100%; /* 아래 버튼 많아져서 100%로 잡아둠 */
+	height: 100%;
 	background-color: black;
-	margin-bottom: 60px;
+	margin-bottom: 30px;
 	padding: 10px;
+}
+
+.exercise-search {
+	position: relative;
+	width: 300px;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.exercise-search input {
+	width: 100%;
+	border: 1px solid #bbb;
+	border-radius: 8px;
+	padding: 10px 0px 10px 10px;
+	font-size: 15px;
+	margin-top: 14px;
+}
+
+.exercise-search img {
+	position: absolute;
+	width: 17px;
+	top: 10px;
+	right: 12px;
+	margin-top: 14px;
 }
 
 /* 카테고리 토글 구간 */
@@ -157,80 +177,123 @@ div#category-selectors {
 	border: 1px solid #fff !important;
 }
 
-/* checked 되면 hover 효과 유지, 왜 안되는지 모르겠음
-.radio-container input:checked + label {
-	color: black !important;
-	background: #a0f5ef !important;
-	border: 1px solid #fff !important;
+/* 검색 결과 */
+.disabled {
+	color: grey;
+	pointer-events: none;
 }
 
-input[type="radio"]:checked {
-	color: black !important;
-	background: #a0f5ef !important;
-	border: 1px solid #fff !important;
-} */
+#muscle-search-container {
+	display: flex;
+	flex-direction: row;
+	gap: 20px;
+	justify-content: center;
+}
 
-/* 검색 결과 */
-div#search-result {
-	width: calc(100% - 168px * 2);
-	margin: 0 auto;
+.panel {
+	padding: 20px;
+	border-radius: 10px;
+	background-color: rgba(242, 242, 242, 0.3); /* 반투명 배경색 적용 */
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	height: calc(77vh - 40px); /* 화면 높이의 77%에서 상하 패딩의 크기를 뺀 값 */
+	overflow-y: auto; /* 내용이 넘칠 경우 수직 스크롤 생성 */
+	margin-top: 20px; /* 위쪽으로 약간의 여백 추가 */
+}
+
+.muscle-list {
+	margin-left: 20px;
+	width: 40%;
+}
+
+.panel.muscle-list {
+	text-align: center; /* 자식 요소의 텍스트 정렬 설정 */
+}
+
+h2#muscle-name {
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+	margin-top: 20px;
+	padding: 10px;
+	color: #3ed4b3;
+	background-color: rgba(255, 255, 255, 0.1);
+	border: 2px solid #3ed4b3;
+	border-radius: 15px;
+	display: inline-block;
+	width: 50%;
+	margin: 30px 20px 60px 20px;
+}
+
+/* 카드 flex 스타일 */
+.card {
+	width: 240px;
+	margin-bottom: 60px;
+	border-radius: 16px !important;
+	overflow: hidden;
+	box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.01);
+	animation: fadeIn 0.5s ease-in-out forwards;
+	animation-fill-mode: both;
+}
+
+.card-list {
+	margin-right: 20px;
+	width: 70%;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	gap: 20px;
 }
 
-/* 카드 */
-div.card {
-	width: 240px;
-
-	margin-bottom: 60px;
-	border-radius: 16px;
-	overflow: hidden;
-
-	box-shadow: 2px 2px 4px rgba(255, 255, 255, 0.01);
+.card-footer {
+	border-bottom-left-radius: 16px;
+	border-bottom-right-radius: 16px;
 }
-div.card h3 {
+
+.card:hover {
+	transform: translateY(-10px) !important; /* 마우스 호버 시 카드가 살짝 위로 움직임 */
+}
+
+.card h3 {
 	margin-top: 12px;
 	margin-bottom: 0;
 }
 
-div.card-img {
+.card-img {
 	width: 240px;
 	height: 120px;
 }
 
-img.thumbnail {
+.card-img img {
 	width: 240px;
 	height: 120px;
 	object-fit: cover;
 }
 
-div.card-footer {
+.card-footer {
 	width: 240px;
 	height: 110px;
 	padding: 8px 10px;
 	box-sizing: border-box;
-
 	background-color: white;
 	color: #1a1a1a;
 }
 
-div.card-marks {
+.card-marks {
 	margin-top: 10px;
 	display: flex;
 }
 
-div.card-mark {
+.card-mark {
 	width: 60px;
 	height: 30px;
 	text-align: center;
-
 	border-right: 1px solid #eaeaea;
 }
 
-div.card-mark:last-child {
+.card-mark:last-child {
 	border-right: none;
 }
+
 p.key {
 	margin-bottom: 8px;
 	display: block;
@@ -240,4 +303,15 @@ p.key {
 p.value {
 	display: block;
 	font-size: 12px;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
