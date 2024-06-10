@@ -90,7 +90,7 @@ div.kettle-bell > p {
 div.content3 {
     background-color: #1a1a1a;
     display: flex;
-    margin-bottom: 60px;
+    margin: 60px 0 60px 0;
 }
 
 div.content3 > img {
