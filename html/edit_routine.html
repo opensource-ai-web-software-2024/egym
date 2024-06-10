@@ -7,8 +7,8 @@
     <title>Edit Routine</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/edit_routine.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
 
 <body>
@@ -16,30 +16,24 @@
         <div id="header"></div>
         <div id="container">
             <h1>운동 수정하기</h1>
-            <form id="edit-form">
-                <label for="exercise">운동 선택:</label>
-                <select id="exercise" name="exercise">
-                    <!-- 동적 생성 -->
-                </select>
-                <br><br>
-                <div class="exercise-set-counts">
-                    <label>
-                        운동 세트 : <input type="number" name="set" id="set" min="1" max="10">
-                    </label>
-                    <label>
-                        운동 횟수 : <input type="number" name="count" id="count" min="1" max="100">
-                    </label>
+            <div id="muscle-search-container">
+                <div class="panel muscle-list">
+                    <h2 id="muscle-name">전체</h2>
+                    <div id="muscle-part"></div>
                 </div>
-                <input type="submit" value="저장하기">
-            </form>
+                <div class="panel card-list" id="search-result"></div>
+                <div id="routine-list" class="panel routine-list" ondrop="drop(event)" ondragover="allowDrop(event)">
+                    <h2>루틴 리스트</h2>
+                </div>
+            </div>
         </div>
-        <div class="exercise-details" id="exercise-details"></div>
-
     </div>
+
     <script src="../js/dynamicHtml/component/modifyRoutine.js" type="module"></script>
     <script src="../js/backup.js" type="module"></script>
     <script src="../js/dynamicHtml/component/header/header.js"></script>
-
+    <script src="../js/dynamicHtml/component/addMuscleSvg.js"></script>
+    <script src="../js/dynamicHtml/component/card/routinePageCard.js" type="module"></script>
 </body>
 
 </html>

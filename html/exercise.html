@@ -18,6 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.js"
         integrity="sha512-M0cjXJTonbWEdLI3HJIoJSQBb9980RWmOCk+tvWkhgFrAZqSSIg1+1Db/vDu7Qk9W3L90gBynve17PYvarjfQA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
 </head>
 
 <body>
@@ -25,14 +26,22 @@
         <div id="header"></div>
         <div id="exercise-list-container">
             <div id="detailed-search">
-                <input id="search-bar" type="text" placeholder="운동명을 검색해보세요">
-                <span id="search-btn" class="material-symbols-outlined">
-                    search
-                </span>
+                <div class="exercise-search">
+                    <input type="text" placeholder="검색어 입력">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+                </div>
+
                 <div id="category-selectors">
                 </div>
             </div>
-            <div id="search-result">
+            <div id="muscle-search-container">
+                <div class="panel muscle-list">
+                    <h2 id="muscle-name">전체</h2>
+                    <div id="muscle-part">
+                    </div>
+                </div>
+                <div class="panel card-list" id="search-result">
+                </div>
             </div>
         </div>
         <div id="exercise-info-container">
@@ -43,8 +52,34 @@
     <script src="../js/dynamicHtml/basicSetting.js" type="module"></script>
     <script src="../js/dynamicHtml/component/header/header.js" type="module"></script>
     <script src="../js/dynamicHtml/component/card/card.js" type="module"></script>
-    <script src="../js/dynamicHtml/component/radioButton.js" type="module"></script>
+    <!-- <script src="../js/dynamicHtml/component/radioButton.js" type="module"></script> -->
     <script src="../js/dynamicHtml/component/searchBar.js" type="module"></script>
+    <script src="../js/dynamicHtml/component/addMuscleSvg.js"></script>
+
+    <script>
+        function toggleContainers() {
+            var exerciseListContainer = document.getElementById('exercise-list-container');
+            var exerciseInfoContainer = document.getElementById('exercise-info-container');
+
+            if (exerciseListContainer.style.display === 'none') {
+                // Exercise List Container가 보이지 않을 때
+                exerciseListContainer.style.display = 'block'; // Exercise List Container 보이게 설정
+                exerciseInfoContainer.style.display = 'none'; // Exercise Info Container 감추기
+            } else {
+                // Exercise List Container가 보일 때
+                exerciseListContainer.style.display = 'none'; // Exercise List Container 감추기
+                exerciseInfoContainer.style.display = 'block'; // Exercise Info Container 보이게 설정
+            }
+        }
+
+        // 초기 상태로 Exercise List Container 보이게 설정
+        document.getElementById('exercise-list-container').style.display = 'block';
+        document.getElementById('exercise-info-container').style.display = 'none';
+
+        // Back 버튼 클릭 시 toggleContainers 함수 호출
+        document.getElementById('back-btn').addEventListener('click', toggleContainers);
+
+    </script>
 </body>
 
 </html>

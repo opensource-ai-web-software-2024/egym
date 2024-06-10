@@ -1,18 +1,19 @@
 div#exercise-list-container {
 	padding-top: 80px;
-	padding-bottom: 60px;
+	/* padding-bottom: 60px; */
 }
+
+/* 운동 정보 화면 시작 */
 
 /* 운동 정보 컨테이너 */
 div#exercise-info-container {
 	height: 100%;
 	padding-top: 80px;
 	padding-bottom: 60px;
-
 }
 
 /* 뒤로 가기 버튼 */
-span.back-btn { 
+span.back-btn {
 	font-size: 32px;
 }
 
@@ -23,7 +24,6 @@ div#exercise-info-header {
 	display: flex;
 	align-items: center;
 	gap: 12px;
-
 }
 
 /* 카테고리 분류 */
@@ -48,7 +48,7 @@ div.category-indicator:before {
 
 /* 영상 재생되는 div */
 div#exercise-video {
-	width: calc(100% - 96px); 
+	width: calc(100% - 96px);
 	margin: 0 48px 60px 48px;
 
 	display: flex;
@@ -111,21 +111,24 @@ div#exercise-introduction > p {
 }
 
 /* 운동 순서, 운동 팁 */
-div#exercise-procedure, div#exercise-tips {
+div#exercise-procedure,
+div#exercise-tips {
 	padding: 0 48px;
 	margin-bottom: 60px;
 }
 
-div#exercise-procedure > h2, div#exercise-tips > h2 {
+div#exercise-procedure > h2,
+div#exercise-tips > h2 {
 	margin-bottom: 24px;
 }
 
-div#exercise-procedure > p, div#exercise-tips > p {
+div#exercise-procedure > p,
+div#exercise-tips > p {
 	margin-bottom: 12px;
 	line-height: 1.5;
 }
 
-div#exercise-procedure > p:last-child, div#exercise-tips > p:last-child {
+div#exercise-procedure > p:last-child,
+div#exercise-tips > p:last-child {
 	margin-bottom: 0;
 }
-

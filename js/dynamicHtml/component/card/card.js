@@ -1,16 +1,24 @@
-import { cardInfosExample } from '../../shared/cardInfosExample.js';
-import { createExerciseInfoContainer } from '../exerciseInfoContainer/exerciseInfoContainer.js'
+import { cardInfosExample } from "../../shared/cardInfosExample.js";
+import { createExerciseInfoContainer } from "../exerciseInfoContainer/exerciseInfoContainer.js";
 
-export function filteringHandler(query, selectedTags) {
+// musclePart 변수 정의
+const musclePart = {
+	하체: ["대퇴근", "내전근", "종아리", "둔근", "햄스트링", "엉덩이 굴곡근", "장경인대", "족저근막"],
+	가슴: ["가슴"],
+	등: ["허리", "등 아래쪽", "등 위쪽"],
+	팔: ["팔뚝", "긴손바닥근", "어깨"],
+	복부: ["복근"],
+};
+
+// 필터링 변경
+function filteringHandler(value) {
 	searchResult = cardInfos;
-	console.log(query);
-	if (query.trim() !== "") {
+	if (value !== "전체") {
+		// 부위 필터링
 		searchResult = searchResult.filter((exerciseInfo) => {
-			
-			return query === exerciseInfo.exerciseName;
+			return Object.values(musclePart).flat().includes(value) && exerciseInfo.exerciseInfo.targetMuscleGroup === value;
 		});
 	}
-	console.log(searchResult);
 	makingCards();
 }
 
@@ -18,49 +26,39 @@ var cardInfos = cardInfosExample;
 var searchResult = cardInfos;
 
 function makingCards() {
-	// div.card 검색
-	// 유사 배열 객체
 	var searchResultDiv = document.getElementById("search-result");
 	searchResultDiv.innerHTML = "";
 	searchResult.forEach((searchInfo) => {
-		// 카드 추가
 		var card = document.createElement("div");
 		card.classList.add("card");
 		searchResultDiv.appendChild(card);
 
-		card.addEventListener('click', () => {
-			console.log(searchInfo);
+		card.addEventListener("click", () => {
 			createExerciseInfoContainer(searchInfo);
 		});
 
-		// 카드 div 추가
 		var cardDiv = document.createElement("div");
 		cardDiv.classList.add("card-div");
 		card.appendChild(cardDiv);
 
-		// 카드 이미지 추가	
 		var cardImg = document.createElement("div");
 		cardImg.classList.add("card-img");
 		cardDiv.appendChild(cardImg);
 
-		// 카드 이미지 삽입
 		var thumbnail = document.createElement("img");
 		thumbnail.classList.add("thumbnail");
 		thumbnail.src = searchInfo.thumbnailLink;
 		cardImg.appendChild(thumbnail);
 
-		// 카드 푸터 추가
 		var cardFooter = document.createElement("div");
 		cardFooter.classList.add("card-footer");
 		cardDiv.appendChild(cardFooter);
 
-		// 푸터에 이름 삽입
 		var cardName = document.createElement("h3");
 		cardName.classList.add("card-name");
 		cardName.textContent = searchInfo.exerciseName;
 		cardFooter.appendChild(cardName);
 
-		// 푸터에 카드 마크div 추가
 		var cardMarks = document.createElement("div");
 		cardMarks.classList.add("card-marks");
 		cardFooter.appendChild(cardMarks);
@@ -85,12 +83,10 @@ function makingCards() {
 		];
 
 		markInfos.forEach((markInfo) => {
-			// 카드 마크 추가
 			var cardMark = document.createElement("div");
 			cardMark.classList.add("card-mark");
 
 			cardMarks.appendChild(cardMark);
-			// 카드 마크에 key와 value 추가
 			var key = document.createElement("p");
 			key.classList.add("key");
 			key.textContent = markInfo.key;
@@ -105,3 +101,4 @@ function makingCards() {
 }
 
 makingCards();
+window.filteringHandler = filteringHandler;
