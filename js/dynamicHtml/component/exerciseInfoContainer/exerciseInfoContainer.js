@@ -17,10 +17,6 @@ export function createExerciseInfoContainer(cardInfo) {  // 운동 상세 정보
     }
 }   
 
-
-
-
-
 function createExerciseCategoryClassification(cardInfo) { // 카테고리 정보 만드는 함수
     var exerciseCategoryClassification = document.createElement("div");
     exerciseCategoryClassification.id = "exercise-category-classfication";
