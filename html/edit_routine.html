@@ -16,6 +16,14 @@
         <div id="header"></div>
         <div id="container">
             <h1>운동 수정하기</h1>
+            <div id="detailed-search">
+                <div class="exercise-search">
+                    <input id="exercise-search-bar" type="text" placeholder="검색어 입력">
+                    <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png"
+                        id="exercise-search-btn">
+                </div>
+                <div id="category-selectors"></div>
+            </div>
             <div id="muscle-search-container">
                 <div class="panel muscle-list">
                     <h2 id="muscle-name">전체</h2>
@@ -33,6 +41,7 @@
     <script src="../js/backup.js" type="module"></script>
     <script src="../js/dynamicHtml/component/header/header.js"></script>
     <script src="../js/dynamicHtml/component/addMuscleSvg.js"></script>
+    <script src="../js/dynamicHtml/component/searchBar.js" type="module"></script>
     <script src="../js/dynamicHtml/component/card/routinePageCard.js" type="module"></script>
 </body>
 

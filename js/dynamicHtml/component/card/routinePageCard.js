@@ -8,13 +8,21 @@ const musclePart = {
 	복부: ["복근"],
 };
 
-function filteringHandler(value) {
+export function filteringHandler(value, flags) {
 	searchResult = cardInfos;
-	if (value !== "전체") {
+	if (flags == true) {
+		// 부위 필터링
 		searchResult = searchResult.filter((exerciseInfo) => {
 			return Object.values(musclePart).flat().includes(value) && exerciseInfo.exerciseInfo.targetMuscleGroup === value;
 		});
+	} else if (value.trim() !== "" && flags === false) {
+		// 검색어 필터링
+		searchResult = searchResult.filter((exerciseInfo) => {
+			return exerciseInfo.exerciseName.includes(value);
+		});
+		console.log(value);
 	}
+
 	makingCards();
 }
 

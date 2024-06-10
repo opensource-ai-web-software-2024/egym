@@ -141,7 +141,7 @@ div#container {
 }
 
 div #container h1 {
-	margin: 20px 30px;
+	margin: 5px 30px 0px 30px;
 }
 
 /* 근육 */
@@ -336,4 +336,33 @@ p.value {
 .fade-out {
 	opacity: 0;
 	transition: opacity 0.3s ease; /* 투명도 변화에 대한 애니메이션 효과 추가 */
+}
+
+/* 세부 검색창 */
+div#detailed-search {
+	padding: 10px;
+}
+
+.exercise-search {
+	position: relative;
+	width: 300px;
+	margin: 0 auto;
+	height: 100%;
+}
+
+.exercise-search input {
+	width: 100%;
+	border: 1px solid #bbb;
+	border-radius: 8px;
+	padding: 10px 0px 10px 10px;
+	font-size: 15px;
+	margin-top: 14px;
+}
+
+.exercise-search img {
+	position: absolute;
+	width: 17px;
+	top: 10px;
+	right: 12px;
+	margin-top: 14px;
 }
