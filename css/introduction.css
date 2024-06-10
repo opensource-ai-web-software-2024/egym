@@ -20,7 +20,7 @@ div#content1 {
     
     background-image: url('../img/egym_main_banner.png');
     background-size: cover;
-    background-position: center;
+    background-position: center -50px;
 
     padding-top: 80px;
 }
@@ -38,8 +38,7 @@ div#content1 > h1 {
     transform: translate(-50%, -50%);
 
     font-size: 90px;
-    -webkit-text-stroke: 1px #3ed4b3; 
-    color: transparent;
+    color: #3ed4b3;
 }
 
 /* 메인 배너 소개글 */

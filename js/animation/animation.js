@@ -1,3 +1,0 @@
-function typingAnimation() {
-    document.s
-}
