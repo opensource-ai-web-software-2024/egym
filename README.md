@@ -13,54 +13,6 @@
 - 박용성
 
 ```
-egym_2024
-├─ .DS_Store
-├─ README.md
-├─ __pycache__
-│  ├─ readCsv.cpython-311.pyc
-│  └─ readCsv.cpython-312.pyc
-├─ css
-│  ├─ exercise.css
-│  ├─ routine_style.css
-│  └─ style.css
-├─ csv
-│  └─ test.csv
-├─ favicon.ico
-├─ html
-│  ├─ exercise.html
-│  ├─ index.html
-│  ├─ record_detail.html
-│  ├─ routine.html
-│  └─ test.html
-├─ js
-│  ├─ crawl.js
-│  ├─ csvHandler.js
-│  ├─ dynamicHtml
-│  │  ├─ basicSetting.js
-│  │  ├─ class
-│  │  │  ├─ cardInfo.js
-│  │  │  └─ exerciseInfo.js
-│  │  └─ component
-│  │     ├─ card.js
-│  │     ├─ categoryClassification.js
-│  │     ├─ createRoutineList.js
-│  │     ├─ exerciseInfoContainer.js
-│  │     ├─ header.js
-│  │     ├─ radioButton.js
-│  │     └─ searchBar.js
-│  ├─ key.js
-│  └─ translator.js
-├─ py
-│  ├─ __pycache__
-│  │  └─ readCsv.cpython-312.pyc
-│  ├─ proxyServer.py
-│  └─ readCsv.py
-└─ src
-   └─ img
-
-```
-
-```
 egym
 ├─ .DS_Store
 ├─ README.md
