@@ -11,7 +11,7 @@ async function typingAnimation(textElementId) {
         await wait(delay);
         textElement.textContent += char;
     }
-}
+}   
 
 function wait(ms) {
     return new Promise(res => setTimeout(res, ms));

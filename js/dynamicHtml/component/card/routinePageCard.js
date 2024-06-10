@@ -18,6 +18,7 @@ function filteringHandler(value) {
 	makingCards();
 }
 
+
 var cardInfos = cardInfosExample;
 var searchResult = cardInfos;
 

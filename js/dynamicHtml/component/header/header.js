@@ -19,10 +19,6 @@ var navItemInfos = [
         textContent: "홈",
     },
     {
-        href: "introduction.html",
-        textContent: "소개",
-    },
-    {
         href: "exercise.html",
         textContent: "운동 검색",
     },
