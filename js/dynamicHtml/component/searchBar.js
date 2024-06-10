@@ -1,29 +1,35 @@
-import { filteringHandler } from './card.js';
- 
-var query = "";
+document.addEventListener("DOMContentLoaded", () => {
+	var query = "";
+	var searchBar = document.getElementById("exercise-search-bar");
+	var searchBtn = document.getElementById("exercise-search-btn");
 
-var searchBar = document.getElementById("search-bar");
-searchBar.value = query;
-console.log(searchBar.value);
+	if (!searchBar) {
+		console.error("Search bar element not found");
+		return;
+	}
 
-function searchHandler() {
-    query = searchBar.value;
-    filteringHandler(query); 
-}
+	if (!searchBtn) {
+		console.error("Search button element not found");
+		return;
+	}
 
-var searchBtn = document.getElementById("search-btn");
-searchBtn.onclick = searchHandler;
-console.log(searchBtn);
-// 이벤트 핸들러 함수
-function handleKeyPress(event) {
-    // 눌린 키의 코드 확인
-    var keyCode = event.keyCode || event.which;
-    
-    // enter keycode: 13
-    if (keyCode === 13) {
-        searchHandler();
-    }
-}
+	searchBar.value = query;
+	console.log("Search query:", query); // 디버깅을 위한 로그
 
-// 키다운 이벤트 리스너 등록
-document.addEventListener("keydown", handleKeyPress);
+	function searchHandler() {
+		query = searchBar.value;
+		console.log("Search query:", query); // 디버깅을 위한 로그
+		filteringHandler(query, false);
+	}
+
+	searchBtn.onclick = searchHandler;
+
+	function handleKeyPress(event) {
+		var keyCode = event.keyCode || event.which;
+		if (keyCode === 13) {
+			searchHandler();
+		}
+	}
+
+	document.addEventListener("keydown", handleKeyPress);
+});

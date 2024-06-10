@@ -68,7 +68,7 @@ function createAdditionalContent(routineName) {
 	routineExercises.forEach((exercise) => {
 		const exerciseDiv = document.createElement("div");
 		exerciseDiv.classList.add("exercise-item");
-		exerciseDiv.textContent = `${exercise.exercise} - 세트: ${exercise.sets}, 횟수: ${exercise.reps}`;
+		exerciseDiv.textContent = `${exercise.exerciseName} - 세트: ${exercise.sets}, 횟수: ${exercise.reps}`;
 		exerciseListDiv.appendChild(exerciseDiv);
 	});
 

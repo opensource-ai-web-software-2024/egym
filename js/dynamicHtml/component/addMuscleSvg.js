@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
 						d3.select(this).style("fill", "#3ed4b3").classed("selected", true);
 						var muscleNameTranslated = muscleTranslation[group] || group.charAt(0).toUpperCase() + group.slice(1);
 						muscleName.textContent = muscleNameTranslated;
-						window.filteringHandler(muscleNameTranslated);
+						window.filteringHandler(muscleNameTranslated, true);
 					}
 				});
 		});
